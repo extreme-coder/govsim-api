@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "country_stats",
+  "info": {
+    "name": "Country Stat"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "float"
+    },
+    "country": {
+      "model": "country"
+    }
+  }
+}

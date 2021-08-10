@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "base_stats",
+  "info": {
+    "name": "Base Stat"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "decimal"
+    },
+    "country_template": {
+      "model": "country-template"
+    }
+  }
+}

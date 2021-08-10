@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parties",
+  "info": {
+    "name": "Party",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "country": {
+      "model": "country"
+    },
+    "template": {
+      "model": "party-template"
+    },
+    "points": {
+      "type": "biginteger"
+    },
+    "seats": {
+      "type": "integer"
+    },
+    "bills": {
+      "collection": "bill",
+      "via": "sponsors"
+    },
+    "politicians": {
+      "collection": "politician",
+      "via": "party"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "policies",
+  "info": {
+    "name": "Policy"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "severity": {
+      "type": "decimal"
+    }
+  }
+}

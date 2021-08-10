@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "goals",
+  "info": {
+    "name": "Goal",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party_template": {
+      "model": "party-template"
+    },
+    "goal_type": {
+      "type": "enumeration",
+      "enum": [
+        "policy",
+        "stat"
+      ]
+    },
+    "stat_name": {
+      "type": "string"
+    },
+    "minimun": {
+      "type": "biginteger"
+    },
+    "maximum": {
+      "type": "biginteger"
+    },
+    "points": {
+      "type": "biginteger"
+    },
+    "policies": {
+      "collection": "policy"
+    }
+  }
+}

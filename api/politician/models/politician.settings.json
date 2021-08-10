@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "politicians",
+  "info": {
+    "name": "Politician",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "country": {
+      "model": "country"
+    },
+    "is_admin": {
+      "type": "boolean"
+    },
+    "is_prime_minister": {
+      "type": "boolean"
+    },
+    "party": {
+      "via": "politicians",
+      "model": "party"
+    }
+  }
+}
