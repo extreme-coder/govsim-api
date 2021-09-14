@@ -26,10 +26,6 @@
     "seats": {
       "type": "integer"
     },
-    "bills": {
-      "collection": "bill",
-      "via": "sponsors"
-    },
     "politicians": {
       "collection": "politician",
       "via": "party"

@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "promises",
+  "info": {
+    "name": "Promise"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party": {
+      "model": "party"
+    },
+    "law": {
+      "model": "law"
+    }
+  }
+}

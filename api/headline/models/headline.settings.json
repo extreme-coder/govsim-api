@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "headlines",
+  "info": {
+    "name": "Headline"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "moderate",
+        "conspriacy"
+      ]
+    }
+  }
+}

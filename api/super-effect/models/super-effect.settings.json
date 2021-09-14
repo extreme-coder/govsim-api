@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "super_effects",
+  "info": {
+    "name": "Super Effect"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "tag": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "string"
+    },
+    "effects": {
+      "via": "super_effect",
+      "collection": "effect"
+    }
+  }
+}

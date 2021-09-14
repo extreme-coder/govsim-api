@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "country_laws",
+  "info": {
+    "name": "Country Law"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "country": {
+      "model": "country"
+    },
+    "passed_law": {
+      "model": "law"
+    }
+  }
+}

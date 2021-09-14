@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/ethnicities",
+      "handler": "ethnicity.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ethnicities/count",
+      "handler": "ethnicity.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ethnicities/:id",
+      "handler": "ethnicity.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/ethnicities",
+      "handler": "ethnicity.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/ethnicities/:id",
+      "handler": "ethnicity.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/ethnicities/:id",
+      "handler": "ethnicity.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

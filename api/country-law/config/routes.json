@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/country-laws",
+      "handler": "country-law.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/country-laws/count",
+      "handler": "country-law.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/country-laws/:id",
+      "handler": "country-law.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/country-laws",
+      "handler": "country-law.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/country-laws/:id",
+      "handler": "country-law.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/country-laws/:id",
+      "handler": "country-law.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

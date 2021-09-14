@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "modifiers",
+  "info": {
+    "name": "Modifier",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "tag": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "string"
+    },
+    "affected_stat": {
+      "model": "base-stat"
+    },
+    "amount": {
+      "type": "integer"
+    }
+  }
+}

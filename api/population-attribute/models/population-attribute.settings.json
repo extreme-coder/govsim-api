@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "population_attributes",
+  "info": {
+    "name": "Population Attribute",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "party_support": {
+      "model": "party-template"
+    }
+  }
+}

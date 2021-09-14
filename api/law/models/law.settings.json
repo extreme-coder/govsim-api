@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "laws",
+  "info": {
+    "name": "Law",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "effects": {
+      "collection": "effect"
+    },
+    "modifiers": {
+      "collection": "modifier"
+    },
+    "super_effects": {
+      "collection": "super-effect"
+    },
+    "law_type": {
+      "model": "category"
+    },
+    "groups_support": {
+      "collection": "population-attribute"
+    },
+    "groups_against": {
+      "collection": "population-attribute"
+    },
+    "headlines": {
+      "collection": "headline"
+    }
+  }
+}

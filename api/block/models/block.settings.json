@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blocks",
+  "info": {
+    "name": "block",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "preferred_party": {
+      "model": "party"
+    },
+    "country": {
+      "model": "country"
+    },
+    "start_party_1": {
+      "model": "party-template"
+    },
+    "start_party_2": {
+      "model": "party-template"
+    },
+    "ethnicity": {
+      "model": "ethnicity"
+    },
+    "government_support": {
+      "type": "decimal"
+    },
+    "demographics": {
+      "collection": "population-attribute"
+    }
+  }
+}

@@ -21,9 +21,6 @@
         "stat"
       ]
     },
-    "stat_name": {
-      "type": "string"
-    },
     "minimun": {
       "type": "biginteger"
     },
@@ -33,8 +30,11 @@
     "points": {
       "type": "biginteger"
     },
-    "policies": {
-      "collection": "policy"
+    "stat": {
+      "model": "country-stat"
+    },
+    "policy": {
+      "model": "law"
     }
   }
 }

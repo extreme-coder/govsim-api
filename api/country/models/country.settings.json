@@ -20,6 +20,9 @@
     "admin": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "ethnicities": {
+      "collection": "ethnicity"
     }
   }
 }

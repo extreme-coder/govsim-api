@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/super-effects",
+      "handler": "super-effect.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/super-effects/count",
+      "handler": "super-effect.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/super-effects/:id",
+      "handler": "super-effect.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/super-effects",
+      "handler": "super-effect.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/super-effects/:id",
+      "handler": "super-effect.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/super-effects/:id",
+      "handler": "super-effect.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

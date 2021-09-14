@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "effects",
+  "info": {
+    "name": "Effect",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "affected_trait": {
+      "type": "string"
+    },
+    "prereq": {
+      "type": "string"
+    },
+    "new_trait": {
+      "type": "string"
+    },
+    "probability": {
+      "type": "float"
+    },
+    "super_effect": {
+      "model": "super-effect",
+      "via": "effects"
+    }
+  }
+}
