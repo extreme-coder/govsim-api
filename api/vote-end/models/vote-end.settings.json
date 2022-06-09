@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vote_ends",
+  "info": {
+    "name": "Vote End"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "vote": {
+      "model": "vote"
+    },
+    "ballots": {
+      "collection": "ballot"
+    }
+  }
+}

@@ -11,9 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "type": {
-      "type": "string"
-    },
     "value": {
       "type": "string"
     },

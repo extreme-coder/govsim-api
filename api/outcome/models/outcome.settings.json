@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "outcomes",
+  "info": {
+    "name": "Outcome",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "descriptor": {
+      "type": "string"
+    },
+    "effects": {
+      "collection": "effect"
+    },
+    "chance": {
+      "type": "float"
+    }
+  }
+}

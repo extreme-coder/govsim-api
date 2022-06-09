@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "choices",
+  "info": {
+    "name": "choice"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "descriptor": {
+      "type": "string"
+    },
+    "groups_support": {
+      "collection": "population-attribute"
+    },
+    "groups_oppose": {
+      "collection": "population-attribute"
+    },
+    "prob1": {
+      "type": "float"
+    },
+    "prob2": {
+      "type": "float"
+    }
+  }
+}

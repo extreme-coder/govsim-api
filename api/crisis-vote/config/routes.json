@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/crisis-votes",
+      "handler": "crisis-vote.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/crisis-votes/count",
+      "handler": "crisis-vote.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/crisis-votes/:id",
+      "handler": "crisis-vote.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/crisis-votes",
+      "handler": "crisis-vote.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/crisis-votes/:id",
+      "handler": "crisis-vote.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/crisis-votes/:id",
+      "handler": "crisis-vote.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

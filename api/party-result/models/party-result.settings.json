@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "party_results",
+  "info": {
+    "name": "Party Result"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party": {
+      "model": "party"
+    },
+    "election": {
+      "model": "election"
+    },
+    "seats": {
+      "type": "integer"
+    }
+  }
+}

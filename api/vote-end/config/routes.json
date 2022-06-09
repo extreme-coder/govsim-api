@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/vote-ends",
+      "handler": "vote-end.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/vote-ends/count",
+      "handler": "vote-end.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/vote-ends/:id",
+      "handler": "vote-end.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/vote-ends",
+      "handler": "vote-end.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/vote-ends/:id",
+      "handler": "vote-end.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/vote-ends/:id",
+      "handler": "vote-end.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+const { toQueries } = require("strapi-connector-bookshelf/lib/utils/populate-queries");
+
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
@@ -6,4 +8,7 @@ module.exports = ({ env }) => ({
       secret: env('ADMIN_JWT_SECRET', '3af8932a2701e0021e5403048c1524f0'),
     },
   },
+  cron: {
+    enabled: true
+  }
 });

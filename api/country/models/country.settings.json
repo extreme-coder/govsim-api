@@ -21,8 +21,17 @@
       "plugin": "users-permissions",
       "model": "user"
     },
-    "ethnicities": {
-      "collection": "ethnicity"
+    "start_time": {
+      "type": "datetime"
+    },
+    "election_period": {
+      "type": "biginteger"
+    },
+    "next_election": {
+      "type": "datetime"
+    },
+    "paused": {
+      "type": "boolean"
     }
   }
 }

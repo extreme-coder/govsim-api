@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "country_stats",
   "info": {
-    "name": "Country Stat"
+    "name": "Country Stat",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -18,6 +19,9 @@
     },
     "country": {
       "model": "country"
+    },
+    "mod": {
+      "type": "float"
     }
   }
 }

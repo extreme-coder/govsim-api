@@ -14,9 +14,6 @@
     "name": {
       "type": "string"
     },
-    "affected_trait": {
-      "type": "string"
-    },
     "prereq": {
       "type": "string"
     },

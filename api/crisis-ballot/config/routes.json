@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/crisis-ballots",
+      "handler": "crisis-ballot.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/crisis-ballots/count",
+      "handler": "crisis-ballot.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/crisis-ballots/:id",
+      "handler": "crisis-ballot.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/crisis-ballots",
+      "handler": "crisis-ballot.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/crisis-ballots/:id",
+      "handler": "crisis-ballot.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/crisis-ballots/:id",
+      "handler": "crisis-ballot.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

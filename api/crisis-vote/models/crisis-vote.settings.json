@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crisis_votes",
+  "info": {
+    "name": "Crisis Vote",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "datetime": {
+      "type": "datetime"
+    },
+    "country": {
+      "model": "country"
+    },
+    "crisis": {
+      "model": "crisis"
+    }
+  }
+}

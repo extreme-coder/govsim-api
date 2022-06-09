@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crisis_ballots",
+  "info": {
+    "name": "Crisis Ballot"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party": {
+      "model": "party"
+    },
+    "crisis_vote": {
+      "model": "crisis-vote"
+    },
+    "decision": {
+      "model": "decision"
+    }
+  }
+}

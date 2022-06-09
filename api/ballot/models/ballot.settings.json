@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ballots",
+  "info": {
+    "name": "Ballot",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party": {
+      "model": "party"
+    },
+    "for": {
+      "type": "boolean"
+    },
+    "vote": {
+      "model": "vote"
+    },
+    "country": {
+      "model": "country"
+    }
+  }
+}

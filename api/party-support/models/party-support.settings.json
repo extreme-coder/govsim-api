@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "party_supports",
+  "info": {
+    "name": "Party Support"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "block": {
+      "model": "block"
+    },
+    "party": {
+      "model": "party"
+    },
+    "support": {
+      "type": "biginteger"
+    }
+  }
+}

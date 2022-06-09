@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "votes",
+  "info": {
+    "name": "Vote",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "country": {
+      "model": "country"
+    },
+    "datetime": {
+      "type": "datetime"
+    },
+    "promise": {
+      "model": "promise"
+    }
+  }
+}

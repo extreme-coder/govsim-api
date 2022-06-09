@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "foci",
+  "info": {
+    "name": "Focus",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "population_attribute": {
+      "model": "population-attribute"
+    },
+    "law": {
+      "model": "law"
+    },
+    "modifier": {
+      "type": "biginteger"
+    },
+    "cost": {
+      "type": "biginteger"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "identity",
+        "issue",
+        "efficiency",
+        "growth"
+      ]
+    },
+    "country_stat": {
+      "model": "country-stat"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

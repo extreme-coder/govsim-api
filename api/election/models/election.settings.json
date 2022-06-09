@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "elections",
+  "info": {
+    "name": "Election",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "datetime": {
+      "type": "datetime"
+    },
+    "country": {
+      "model": "country"
+    }
+  }
+}

@@ -29,6 +29,21 @@
     "politicians": {
       "collection": "politician",
       "via": "party"
+    },
+    "effectiveness": {
+      "type": "decimal"
+    },
+    "effectiveness_mod": {
+      "type": "float"
+    },
+    "budget": {
+      "type": "biginteger"
+    },
+    "expenses": {
+      "type": "biginteger"
+    },
+    "foci": {
+      "collection": "focus"
     }
   }
 }

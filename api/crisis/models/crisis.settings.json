@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crises",
+  "info": {
+    "name": "Crisis"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "decisions": {
+      "via": "crisis",
+      "collection": "decision"
+    }
+  }
+}
