@@ -16,6 +16,9 @@ module.exports = {
         let oldFocus = await strapi.services['focus'].findOne({ id: oldFocusID })
         let newFocusID = newFoci.filter((f) => (oldFoci.indexOf(f) === -1))[0]
         let newFocus = await strapi.services['focus'].findOne({ id: newFocusID })
+        if (entity.expenses + newFocus.cost - oldFocus.cost > entity.budget) {
+            return {}
+        }
         switch (newFocus.type) {
             case "efficiency":
                 let currentEf = entity.effectiveness_mod
@@ -48,7 +51,7 @@ module.exports = {
                 })
                 break
             case "issue":
-                law = await strapi.services.law.findOne({ id: newFocus.law.id })
+                const law = await strapi.services.law.findOne({ id: newFocus.law.id })
                 law.groups_for.map(async (group) => {
                     const blocks = await strapi.services.block.find({ demographics: group.id })
                     blocks.map(async (block) => {
@@ -95,8 +98,8 @@ module.exports = {
                     })
                 })
                 break
-            case "issue"
-                law = await strapi.services.law.findOne({ id: newFocus.law.id })
+            case "issue":
+                const law = await strapi.services.law.findOne({ id: newFocus.law.id })
                 law.groups_for.map(async (group) => {
                     const blocks = await strapi.services.block.find({ demographics: group.id })
                     blocks.map(async (block) => {

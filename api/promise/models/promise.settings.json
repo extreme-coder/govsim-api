@@ -19,6 +19,9 @@
     },
     "country_law": {
       "model": "country-law"
+    },
+    "country": {
+      "model": "country"
     }
   }
 }
