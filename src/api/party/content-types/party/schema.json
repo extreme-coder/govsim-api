@@ -5,7 +5,8 @@
     "singularName": "party",
     "pluralName": "parties",
     "displayName": "Party",
-    "name": "party"
+    "name": "party",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -54,6 +55,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::focus.focus"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
