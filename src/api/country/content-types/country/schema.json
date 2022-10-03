@@ -5,7 +5,8 @@
     "singularName": "country",
     "pluralName": "countries",
     "displayName": "Country",
-    "name": "country"
+    "name": "country",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -37,6 +38,10 @@
     },
     "paused": {
       "type": "boolean"
+    },
+    "join_code": {
+      "type": "string",
+      "unique": true
     }
   }
 }
