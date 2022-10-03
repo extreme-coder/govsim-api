@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "party_templates",
+  "info": {
+    "singularName": "party-template",
+    "pluralName": "party-templates",
+    "displayName": "Party-template",
+    "name": "party-template"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "position": {
+      "type": "integer"
+    },
+    "color": {
+      "type": "string"
+    }
+  }
+}

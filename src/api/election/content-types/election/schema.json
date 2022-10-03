@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "elections",
+  "info": {
+    "singularName": "election",
+    "pluralName": "elections",
+    "displayName": "Election",
+    "name": "election"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "datetime": {
+      "type": "datetime"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "promises",
+  "info": {
+    "singularName": "promise",
+    "pluralName": "promises",
+    "displayName": "Promise",
+    "name": "promise"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "law": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::law.law"
+    },
+    "country_law": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country-law.country-law"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    }
+  }
+}

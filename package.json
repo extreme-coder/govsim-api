@@ -9,20 +9,13 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
+    "@strapi/plugin-users-permissions": "4.4.1",
+    "@strapi/strapi": "4.4.1",
     "knex": "0.21.18",
+    "mysql": "^2.18.1",
     "socket.io": "^4.5.1",
-    "sqlite3": "5.0.0",
-    "strapi": "3.6.9",
-    "strapi-admin": "3.6.9",
-    "strapi-connector-bookshelf": "3.6.9",
-    "strapi-plugin-content-manager": "3.6.9",
-    "strapi-plugin-content-type-builder": "3.6.9",
-    "strapi-plugin-email": "3.6.9",
-    "strapi-plugin-upload": "3.6.9",
-    "strapi-plugin-users-permissions": "3.6.9",
-    "strapi-utils": "3.6.9"
+    "sqlite3": "5.0.0"
   },
   "author": {
     "name": "A Strapi developer"
@@ -31,8 +24,8 @@
     "uuid": "023b9ce0-063b-48b8-bac1-d2ffd9453417"
   },
   "engines": {
-    "node": ">=10.16.0 <=14.x.x",
-    "npm": "^6.0.0"
+    "node": ">=14.19.1 <=16.x.x",
+    "npm": ">=6.0.0"
   },
   "license": "MIT"
 }

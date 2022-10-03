@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "country_templates",
+  "info": {
+    "singularName": "country-template",
+    "pluralName": "country-templates",
+    "displayName": "Country-template",
+    "name": "country-template"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "map": {
+      "type": "media",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "multiple": false,
+      "required": false
+    }
+  }
+}

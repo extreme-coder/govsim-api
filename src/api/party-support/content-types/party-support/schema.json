@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "party_supports",
+  "info": {
+    "singularName": "party-support",
+    "pluralName": "party-supports",
+    "displayName": "Party-support",
+    "name": "party-support"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "block": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::block.block"
+    },
+    "party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "support": {
+      "type": "biginteger"
+    }
+  }
+}

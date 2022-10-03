@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "effects",
+  "info": {
+    "singularName": "effect",
+    "pluralName": "effects",
+    "displayName": "Effect",
+    "name": "effect"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "prereq": {
+      "type": "string"
+    },
+    "new_trait": {
+      "type": "string"
+    },
+    "probability": {
+      "type": "float"
+    },
+    "super_effect": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::super-effect.super-effect",
+      "inversedBy": "effects"
+    }
+  }
+}

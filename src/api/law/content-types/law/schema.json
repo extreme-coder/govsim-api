@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "laws",
+  "info": {
+    "singularName": "law",
+    "pluralName": "laws",
+    "displayName": "Law",
+    "name": "law"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "effects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::effect.effect"
+    },
+    "modifiers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::modifier.modifier"
+    },
+    "super_effects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::super-effect.super-effect"
+    },
+    "law_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "groups_support": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "groups_against": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "headlines": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::headline.headline"
+    }
+  }
+}

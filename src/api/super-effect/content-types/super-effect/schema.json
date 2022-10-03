@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "super_effects",
+  "info": {
+    "singularName": "super-effect",
+    "pluralName": "super-effects",
+    "displayName": "Super-effect",
+    "name": "super-effect"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "tag": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "string"
+    },
+    "effects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::effect.effect",
+      "mappedBy": "super_effect"
+    }
+  }
+}

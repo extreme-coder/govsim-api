@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "politicians",
+  "info": {
+    "singularName": "politician",
+    "pluralName": "politicians",
+    "displayName": "Politician",
+    "name": "politician"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "is_admin": {
+      "type": "boolean"
+    },
+    "is_prime_minister": {
+      "type": "boolean"
+    },
+    "party": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::party.party",
+      "inversedBy": "politicians"
+    }
+  }
+}

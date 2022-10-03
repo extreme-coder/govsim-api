@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "goals",
+  "info": {
+    "singularName": "goal",
+    "pluralName": "goals",
+    "displayName": "Goal",
+    "name": "goal"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party_template": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party-template.party-template"
+    },
+    "goal_type": {
+      "type": "enumeration",
+      "enum": [
+        "policy",
+        "stat"
+      ]
+    },
+    "minimun": {
+      "type": "biginteger"
+    },
+    "maximum": {
+      "type": "biginteger"
+    },
+    "points": {
+      "type": "biginteger"
+    },
+    "stat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country-stat.country-stat"
+    },
+    "policy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::law.law"
+    }
+  }
+}

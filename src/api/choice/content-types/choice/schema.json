@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "choices",
+  "info": {
+    "singularName": "choice",
+    "pluralName": "choices",
+    "displayName": "Choice",
+    "name": "choice"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "descriptor": {
+      "type": "string"
+    },
+    "groups_support": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "groups_oppose": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "prob1": {
+      "type": "float"
+    },
+    "prob2": {
+      "type": "float"
+    }
+  }
+}

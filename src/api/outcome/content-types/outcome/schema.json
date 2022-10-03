@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "outcomes",
+  "info": {
+    "singularName": "outcome",
+    "pluralName": "outcomes",
+    "displayName": "Outcome",
+    "name": "outcome"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "descriptor": {
+      "type": "string"
+    },
+    "effects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::effect.effect"
+    },
+    "chance": {
+      "type": "float"
+    }
+  }
+}

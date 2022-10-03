@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "party_results",
+  "info": {
+    "singularName": "party-result",
+    "pluralName": "party-results",
+    "displayName": "Party-result",
+    "name": "party-result"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "election": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::election.election"
+    },
+    "seats": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "base_stats",
+  "info": {
+    "singularName": "base-stat",
+    "pluralName": "base-stats",
+    "displayName": "Base-stat",
+    "name": "base-stat"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "decimal"
+    },
+    "country_template": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country-template.country-template"
+    }
+  }
+}

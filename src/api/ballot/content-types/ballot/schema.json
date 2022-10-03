@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ballots",
+  "info": {
+    "singularName": "ballot",
+    "pluralName": "ballots",
+    "displayName": "Ballot",
+    "name": "ballot"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "for": {
+      "type": "boolean"
+    },
+    "vote": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::vote.vote"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "country_laws",
+  "info": {
+    "singularName": "country-law",
+    "pluralName": "country-laws",
+    "displayName": "Country-law",
+    "name": "country-law"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "passed_law": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::law.law"
+    }
+  }
+}

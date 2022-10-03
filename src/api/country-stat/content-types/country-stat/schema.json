@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "country_stats",
+  "info": {
+    "singularName": "country-stat",
+    "pluralName": "country-stats",
+    "displayName": "Country-stat",
+    "name": "country-stat"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "float"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "mod": {
+      "type": "float"
+    }
+  }
+}

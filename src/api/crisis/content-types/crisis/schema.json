@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crises",
+  "info": {
+    "singularName": "crisis",
+    "pluralName": "crises",
+    "displayName": "Crisis",
+    "name": "crisis"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "decisions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::decision.decision",
+      "mappedBy": "crisis"
+    }
+  }
+}

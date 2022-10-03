@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crisis_votes",
+  "info": {
+    "singularName": "crisis-vote",
+    "pluralName": "crisis-votes",
+    "displayName": "Crisis-vote",
+    "name": "crisis-vote"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "datetime": {
+      "type": "datetime"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "crisis": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::crisis.crisis"
+    }
+  }
+}

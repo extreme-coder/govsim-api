@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crisis_ballots",
+  "info": {
+    "singularName": "crisis-ballot",
+    "pluralName": "crisis-ballots",
+    "displayName": "Crisis-ballot",
+    "name": "crisis-ballot"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "crisis_vote": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::crisis-vote.crisis-vote"
+    },
+    "decision": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::decision.decision"
+    }
+  }
+}

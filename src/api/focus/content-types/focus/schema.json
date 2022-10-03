@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "foci",
+  "info": {
+    "singularName": "focus",
+    "pluralName": "foci",
+    "displayName": "Focus",
+    "name": "focus"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "population_attribute": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "law": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::law.law"
+    },
+    "modifier": {
+      "type": "biginteger"
+    },
+    "cost": {
+      "type": "biginteger"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "identity",
+        "issue",
+        "efficiency",
+        "growth"
+      ]
+    },
+    "country_stat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country-stat.country-stat"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

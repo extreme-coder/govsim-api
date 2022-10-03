@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "modifiers",
+  "info": {
+    "singularName": "modifier",
+    "pluralName": "modifiers",
+    "displayName": "Modifier",
+    "name": "modifier"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "tag": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "string"
+    },
+    "affected_stat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::base-stat.base-stat"
+    },
+    "amount": {
+      "type": "integer"
+    }
+  }
+}

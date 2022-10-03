@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blocks",
+  "info": {
+    "singularName": "block",
+    "pluralName": "blocks",
+    "displayName": "Block",
+    "name": "block"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "preferred_party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "government_support": {
+      "type": "decimal"
+    },
+    "demographics": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "highest_support": {
+      "type": "biginteger"
+    }
+  }
+}

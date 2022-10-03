@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "countries",
+  "info": {
+    "singularName": "country",
+    "pluralName": "countries",
+    "displayName": "Country",
+    "name": "country"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "country_template": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country-template.country-template"
+    },
+    "admin": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "start_time": {
+      "type": "datetime"
+    },
+    "election_period": {
+      "type": "biginteger"
+    },
+    "next_election": {
+      "type": "datetime"
+    },
+    "paused": {
+      "type": "boolean"
+    }
+  }
+}

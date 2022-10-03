@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vote_ends",
+  "info": {
+    "singularName": "vote-end",
+    "pluralName": "vote-ends",
+    "displayName": "Vote-end",
+    "name": "vote-end"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "vote": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::vote.vote"
+    },
+    "ballots": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ballot.ballot"
+    }
+  }
+}

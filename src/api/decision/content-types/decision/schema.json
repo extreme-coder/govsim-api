@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "decisions",
+  "info": {
+    "singularName": "decision",
+    "pluralName": "decisions",
+    "displayName": "Decision",
+    "name": "decision"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "descrip": {
+      "type": "string"
+    },
+    "outcomes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::outcome.outcome"
+    },
+    "supporters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "opposers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "crisis": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::crisis.crisis",
+      "inversedBy": "decisions"
+    }
+  }
+}

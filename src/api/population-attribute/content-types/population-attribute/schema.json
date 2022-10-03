@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "population_attributes",
+  "info": {
+    "singularName": "population-attribute",
+    "pluralName": "population-attributes",
+    "displayName": "Population-attribute",
+    "name": "population-attribute"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "value": {
+      "type": "string"
+    },
+    "party_support": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party-template.party-template"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "votes",
+  "info": {
+    "singularName": "vote",
+    "pluralName": "votes",
+    "displayName": "Vote",
+    "name": "vote"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "datetime": {
+      "type": "datetime"
+    },
+    "promise": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::promise.promise"
+    }
+  }
+}
