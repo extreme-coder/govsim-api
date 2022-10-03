@@ -43,6 +43,9 @@
     "join_code": {
       "type": "string",
       "unique": true
+    },
+    "is_public": {
+      "type": "boolean"
     }
   }
 }
