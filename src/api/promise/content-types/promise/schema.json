@@ -5,7 +5,8 @@
     "singularName": "promise",
     "pluralName": "promises",
     "displayName": "Promise",
-    "name": "promise"
+    "name": "promise",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -32,6 +33,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::country.country"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }
