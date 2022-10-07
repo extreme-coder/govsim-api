@@ -29,11 +29,6 @@
       "relation": "oneToOne",
       "target": "api::country-law.country-law"
     },
-    "country": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::country.country"
-    },
     "name": {
       "type": "string"
     }
