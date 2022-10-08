@@ -31,6 +31,14 @@
     },
     "name": {
       "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "NEW",
+        "IN_VOTE"
+      ],
+      "default": "NEW"
     }
   }
 }
