@@ -45,7 +45,8 @@
       "unique": true
     },
     "is_public": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     }
   }
 }
