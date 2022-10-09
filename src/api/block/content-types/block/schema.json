@@ -5,7 +5,8 @@
     "singularName": "block",
     "pluralName": "blocks",
     "displayName": "Block",
-    "name": "block"
+    "name": "block",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -33,6 +34,11 @@
     },
     "highest_support": {
       "type": "biginteger"
+    },
+    "fav_stats": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::base-stat.base-stat"
     }
   }
 }
