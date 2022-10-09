@@ -14,7 +14,7 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "value": {
+    "name": {
       "type": "string"
     },
     "party_support": {

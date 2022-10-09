@@ -27,9 +27,9 @@
     "government_support": {
       "type": "decimal"
     },
-    "demographics": {
+    "demographic": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::population-attribute.population-attribute"
     },
     "highest_support": {
