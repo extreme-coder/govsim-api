@@ -6,4 +6,15 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::party.party');
+module.exports = createCoreController('api::party.party', ({ strapi }) =>  ({  
+  async create(ctx) {        
+    ctx.request.body.data = {
+      ...ctx.request.body.data,
+      user: ctx.state.user.id  
+    };
+
+    const response = await strapi.entityService.create('api::party.party', ctx.request.body);
+    return response;
+  },
+  
+}));
