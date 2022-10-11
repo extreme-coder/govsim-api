@@ -31,6 +31,14 @@ module.exports = createCoreController('api::country.country', ({ strapi }) =>  (
     };
     
     const response = await super.create(ctx);    
+    //copy data from template 
+    const template = await strapi.entityService.findOne('api::country.country', ctx.request.body.data.template)
+
+    //copy data
+    strapi.service('api::country.country').copyDataFromTemplate(template.id, response.data.id, 'block')  
+    strapi.service('api::country.country').copyDataFromTemplate(template.id, response.data.id, 'country-stat')  
+    strapi.service('api::country.country').copyDataFromTemplate(template.id, response.data.id, 'country-law')  
+        
     return response;
   },
 

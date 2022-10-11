@@ -47,6 +47,15 @@
     "is_public": {
       "type": "boolean",
       "default": true
+    },
+    "is_template": {
+      "type": "boolean",
+      "default": false
+    },
+    "template": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
     }
   }
 }
