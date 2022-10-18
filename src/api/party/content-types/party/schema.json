@@ -60,6 +60,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "ready_for_election": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

@@ -11,8 +11,11 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
     let parties = await strapi.service('api::party.party').find({ country: countryID })
     parties = parties.results
     let votes = {}
-    parties.map((par) => {
+    parties.map(async (par) => {
       votes[par.id] = 0
+      await strapi.entityService.update('api::party.party', par.id, {
+        data: {ready_for_election: false}
+      })
     })
     const blocks = await strapi.service('api::block.block').find({ country: countryID })
     let total = 0

@@ -5,7 +5,8 @@
     "singularName": "election",
     "pluralName": "elections",
     "displayName": "Election",
-    "name": "election"
+    "name": "election",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -20,6 +21,13 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::country.country"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "NEW",
+        "FINISHED"
+      ]
     }
   }
 }

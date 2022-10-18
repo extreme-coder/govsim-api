@@ -5,7 +5,8 @@
     "singularName": "vote",
     "pluralName": "votes",
     "displayName": "Vote",
-    "name": "vote"
+    "name": "vote",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -25,6 +26,15 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::promise.promise"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "IN_VOTE",
+        "FAILED",
+        "PASSED"
+      ],
+      "default": "IN_VOTE"
     }
   }
 }
