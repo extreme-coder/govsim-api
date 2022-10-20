@@ -5,7 +5,8 @@
     "singularName": "party-template",
     "pluralName": "party-templates",
     "displayName": "Party-template",
-    "name": "party-template"
+    "name": "party-template",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -21,6 +22,16 @@
     },
     "color": {
       "type": "string"
+    },
+    "avatar": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

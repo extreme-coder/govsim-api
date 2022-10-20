@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "singularName": "message",
+    "pluralName": "messages",
+    "displayName": "message",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "body": {
+      "type": "string"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "message_type": {
+      "type": "enumeration",
+      "enum": [
+        "CHAT",
+        "VOTE_NOTIFICATION"
+      ]
+    },
+    "from_party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "to_party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    }
+  }
+}
