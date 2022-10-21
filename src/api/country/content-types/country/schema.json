@@ -18,11 +18,6 @@
       "type": "string",
       "unique": true
     },
-    "country_template": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::country-template.country-template"
-    },
     "admin": {
       "type": "relation",
       "relation": "oneToOne",
@@ -56,6 +51,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::country.country"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }
