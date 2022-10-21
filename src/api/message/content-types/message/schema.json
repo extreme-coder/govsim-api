@@ -35,6 +35,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::party.party"
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
