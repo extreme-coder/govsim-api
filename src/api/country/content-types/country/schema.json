@@ -54,6 +54,9 @@
     },
     "description": {
       "type": "text"
+    },
+    "elections_occurred": {
+      "type": "boolean"
     }
   }
 }
