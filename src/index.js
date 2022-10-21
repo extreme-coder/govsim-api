@@ -18,7 +18,7 @@
         //strapi.server.httpServer is the new update for Strapi V4
         var io = require("socket.io")(strapi.server.httpServer, {
           cors: { // cors setup
-            origin: ProcessingInstruction.env.UI_DOMAIN,
+            origin: process.env.UI_DOMAIN,
             methods: ["GET", "POST"],
             allowedHeaders: ["my-custom-header"],
             credentials: true,
