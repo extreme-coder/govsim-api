@@ -27,7 +27,8 @@
       "enum": [
         "NEW",
         "FINISHED"
-      ]
+      ],
+      "default": "NEW"
     }
   }
 }

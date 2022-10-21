@@ -5,7 +5,8 @@
     "singularName": "party-support",
     "pluralName": "party-supports",
     "displayName": "Party-support",
-    "name": "party-support"
+    "name": "party-support",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -25,6 +26,11 @@
     },
     "support": {
       "type": "biginteger"
+    },
+    "party_template": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party-template.party-template"
     }
   }
 }
