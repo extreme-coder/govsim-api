@@ -66,6 +66,12 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
 
     }))
 
+    await strapi.entityService.update('api::country.country', countryID, {
+      data: {
+        elections_occurred: true
+      }
+    })
+
   },
 
 }));
