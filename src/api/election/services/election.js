@@ -55,9 +55,12 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
       } catch (e) {
         console.log(e)
       }
+
+      console.log(votes[p.id.toString(10)])
+
       await strapi.entityService.update('api::party.party', p.id, {
         data: {
-          seats: votes[p.id.toString(10)] / total * 50
+          seats: (votes[p.id.toString(10)] * 400) / total 
         },
       });
 
