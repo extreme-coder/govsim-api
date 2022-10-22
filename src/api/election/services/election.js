@@ -17,7 +17,10 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         data: {ready_for_election: false}
       })
     })
-    const blocks = await strapi.service('api::block.block').find({ country: countryID })
+    
+    const blocks = await strapi.entityService.findMany('api::block.block', { 
+      filters: {country: countryID}
+    })
     let total = 0
 
     await Promise.all(blocks.results.map(async (block) => {

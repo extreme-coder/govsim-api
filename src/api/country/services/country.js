@@ -13,11 +13,13 @@ module.exports = createCoreService('api::country.country', ({ strapi }) => ({
         populate: '*'  
       });
       entries.forEach(async (entry) => {
+        if(entityName === 'block') {
+          entry.parent_block = entry.id
+        }
         entry.country = countryId
         entry.id = undefined
         entry.createdBy = undefined
-        entry.updatedBy = undefined
-        console.log(entry)
+        entry.updatedBy = undefined        
         await strapi.entityService.create(`api::${entityName}.${entityName}`, {
           data: entry
         })

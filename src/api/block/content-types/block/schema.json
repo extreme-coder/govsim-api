@@ -39,6 +39,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::base-stat.base-stat"
+    },
+    "parent_block": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::block.block"
     }
   }
 }
