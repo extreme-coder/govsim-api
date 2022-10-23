@@ -26,10 +26,9 @@
         });
         strapi.io = io
         io.on("connection", function (socket) { //Listening for a connection from the frontend
-          socket.on("join", ({ username }) => { // Listening for a join connection
-            
-          });
-          
+          socket.on("join", ({ country }) => { // Listening for a join connection
+            socket.join(country)  
+          });          
         });
       },
     };

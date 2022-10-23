@@ -20,8 +20,7 @@ module.exports = createCoreController('api::party.party', ({ strapi }) => ({
       populate: '*'
     })
     
-    partySupports.forEach(async (ps) => {
-      console.log(ps)
+    partySupports.forEach(async (ps) => {      
       ps.party = response.id
       ps.id = undefined
       ps.party_template = undefined
@@ -30,13 +29,13 @@ module.exports = createCoreController('api::party.party', ({ strapi }) => ({
       const countryBlock = await strapi.entityService.findMany('api::block.block', {
         filters: { parent_block: ps.block.id, country: ctx.request.body.data.country }
       })
-      ps.block = countryBlock[0].id
-      console.log(ps)
-
+      ps.block = countryBlock[0].id    
       const newPs = await strapi.entityService.create('api::party-support.party-support', {
         data: ps
       }) 
     })
+
+    strapi.io.to(ctx.request.body.data.country).emit('new_party', {id:response.id, name:response.name})
 
     return response;
   },

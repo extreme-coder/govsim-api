@@ -12,7 +12,7 @@ module.exports = createCoreController('api::message.message', ({ strapi }) =>  (
     const message = await strapi.entityService.findOne('api::message.message', response.data.id, {
       populate: '*'
     })
-    strapi.io.emit("message", await this.transformResponse(message).data)
+    strapi.io.to(message.country.id).emit("message", await this.transformResponse(message).data)
     return response
   },
   async messagesRead(ctx) {    
@@ -32,7 +32,7 @@ module.exports = createCoreController('api::message.message', ({ strapi }) =>  (
       },
     });
     return(response)
-    
+
   }
 
 })) 
