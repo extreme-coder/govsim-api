@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "canvassings",
+  "info": {
+    "singularName": "canvassing",
+    "pluralName": "canvassings",
+    "displayName": "Canvassing"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "demographic": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::population-attribute.population-attribute"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "budget": {
+      "type": "biginteger"
+    }
+  }
+}

@@ -51,11 +51,6 @@
     "expenses": {
       "type": "biginteger"
     },
-    "foci": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::focus.focus"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",
