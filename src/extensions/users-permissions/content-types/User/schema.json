@@ -5,7 +5,8 @@
     "singularName": "user",
     "pluralName": "users",
     "displayName": "User",
-    "name": "User"
+    "name": "User",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false,
@@ -60,6 +61,9 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.role",
       "inversedBy": "users"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }

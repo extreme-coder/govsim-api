@@ -39,6 +39,11 @@
         "IN_VOTE"
       ],
       "default": "NEW"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
     }
   }
 }

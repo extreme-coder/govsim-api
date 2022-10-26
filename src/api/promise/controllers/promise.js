@@ -23,6 +23,12 @@ module.exports = createCoreController('api::promise.promise', ({ strapi }) =>  (
       return ctx.badRequest('This bill already exists', {  })
     }
 
+    const party = await strapi.entityService.findOne('api::party.party', pr.party, {      
+      populate: { country: true},
+    });
+
+    ctx.request.body.data.country = party.country.id
+
     const law = await strapi.entityService.findOne('api::law.law', pr.law, {      
       populate: { groups_against: true,  groups_support: true},
     });
