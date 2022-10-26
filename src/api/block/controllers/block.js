@@ -22,6 +22,10 @@ module.exports = createCoreController('api::block.block', ({ strapi }) =>  ({
         data[demoName] = 1
       }      
     })
-    return Object.keys(data).map((k) => ({x: k, y: (data[k]*100)/blocks.length}))
+    let ret = {
+      labels: Object.keys(data),
+      data: Object.keys(data).map((k) => data[k])
+    }
+    return ret
   }
 }));
