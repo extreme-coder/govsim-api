@@ -14,13 +14,11 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
         filters: { demographic: group.id },
         populate: { preferred_party: true }
       });
-      console.log(`blocks: ${blocks}`)
       blocks.map(async (block) => {        
         const party_support = await strapi.entityService.findMany('api::party-support.party-support', {      
           filters: { block: block.id, party: partyId },
           populate: {party: true}
         });
-        console.log(party_support)
         party_support.map(async (p) => {   
           let s = Math.ceil(p.support * coeff)
           await strapi.entityService.update('api::party-support.party-support', p.id, {
@@ -28,8 +26,17 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
               support: s,
             },
           });
-          console.log(block)
-          if (s > block.highest_support) {
+          if (s > block.highest_support && s.party.id !== block.preferred_party.id) {
+            await strapi.entityService.update('api::party.party', block.preferred_party.id, {
+              data: {
+                budget: parseInt(block.preferred_party.budget) - parseInt(block.wealth)
+              },
+            });
+            await strapi.entityService.update('api::party.party', p.party.id, {
+              data: {
+                budget: parseInt(p.party.budget) + parseInt(block.wealth)
+              },
+            });
             await strapi.entityService.update('api::block.block', block.id, {
               data: {
                 highest_support: parseInt(s),
