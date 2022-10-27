@@ -7,12 +7,18 @@
 const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::party.party', ({ strapi }) => ({
+
   async create(ctx) {
+
+    const partyTemplate = await strapi.entityService.findOne('api::party-template.party-template', ctx.request.body.data.template)
+
     ctx.request.body.data = {
       ...ctx.request.body.data,
       user: ctx.state.user.id,
-      publishedAt: new Date()
+      publishedAt: new Date(),      
+      budget: partyTemplate.default_budget
     };
+
 
     const response = await strapi.entityService.create('api::party.party', ctx.request.body);
     const partySupports = await strapi.entityService.findMany('api::party-support.party-support', {

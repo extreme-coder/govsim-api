@@ -31,7 +31,8 @@
       "type": "biginteger"
     },
     "seats": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "politicians": {
       "type": "relation",

@@ -10,7 +10,13 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
   async create(ctx) {
     const response = await super.create(ctx);
     const promotion = ctx.request.body.data;
-    const party = promotion.party
+ 
+    //reduce the budget of the party
+    const party = await strapi.entityService.findOne('api::party.party', promotion.party)
+    await strapi.entityService.update('api::party.party', party.id, {      
+      data: { budget:  party.budget - promotion.budget},
+    });
+
     const promise = await strapi.entityService.findOne('api::promise.promise', promotion.promise, {      
       populate: { law: true , party: true },
     });
