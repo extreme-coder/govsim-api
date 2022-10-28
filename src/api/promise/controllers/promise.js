@@ -35,7 +35,10 @@ module.exports = createCoreController('api::promise.promise', ({ strapi }) =>  (
     strapi.service('api::promise.promise').updatePartySupport(law.groups_against, pr.party, 0.8)
     strapi.service('api::promise.promise').updatePartySupport(law.groups_support, pr.party, 1.2)   
     
-    const response = await super.create(ctx);        
+    const response = await super.create(ctx);      
+
+    strapi.io.to(party.country.id).emit('new_bill', {id:response.id, name:response.name})
+  
     return response;
   },
 

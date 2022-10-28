@@ -68,6 +68,10 @@ module.exports = createCoreController('api::party.party', ({ strapi }) => ({
         },
       })
     }
+    if(data.attributes.ready_for_election) {
+      strapi.io.to(party.country.id).emit('ready_for_election', {id:data.id, name:data.attributes.name})
+    }
+  
     return { data, meta }
   }
 
