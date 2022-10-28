@@ -22,25 +22,29 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
       filters: {country: countryID}
     })
     let total = 0
+    let outParties = [] 
 
     await Promise.all(blocks.map(async (block) => {
       console.log(block)
       let topSupport = 0
-      let topParty = 0
+      let topParty = -1
       let supports = await strapi.entityService.findMany('api::party-support.party-support', {
         filters: { block: block.id },
         populate: { party: true }
       })
-
       supports.map((s) => {
         console.log(s)
-        if (parseInt(s.support) > topSupport) {
+        console.log(topSupport)
+        if ( parseInt(s.support) > topSupport && !outParties.includes(s.party.id) ) {
           topSupport = parseInt(s.support)
           topParty = s.party.id
         }
       })
-
+      console.log(topParty)
       votes[topParty] += 1000
+      if (votes[topParty] / 1000 >= blocks.length / 2 - 1){
+        outParties.push(topParty)
+      }
       total += 1000
     }))
 
@@ -57,6 +61,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
       }
 
       console.log(votes[p.id.toString(10)])
+      console.log(total)
 
       await strapi.entityService.update('api::party.party', p.id, {
         data: {
