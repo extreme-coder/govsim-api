@@ -67,7 +67,7 @@ module.exports = createCoreController('api::party.party', ({ strapi }) => ({
           publishedAt: new Date()
         },
       })
-      await strapi.entityService.update('api::country.country', countryID, {
+      await strapi.entityService.update('api::country.country', party.country.id, {
         data: {
           elections_occurred: true, status: 'ELECTIONS'
         }
