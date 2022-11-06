@@ -31,6 +31,7 @@ module.exports = {
       await strapi.entityService.update('api::election.election', election.id, {
         data: {status: 'FINISHED'}
       })
+      strapi.io.to(election.country.id).emit('election_finished', {})
     })
     
   },
