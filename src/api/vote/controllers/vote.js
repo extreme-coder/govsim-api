@@ -35,6 +35,8 @@ module.exports = createCoreController('api::vote.vote', ({ strapi }) =>  ({
       publishedAt: new Date() }
     });
 
+    strapi.io.to(ctx.request.body.data.country).emit('new_vote', vote)
+
     return response;
   },
 
