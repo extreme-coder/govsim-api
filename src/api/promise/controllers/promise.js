@@ -11,16 +11,16 @@ module.exports = createCoreController('api::promise.promise', ({ strapi }) =>  (
   async create(ctx) {
  
     const pr = ctx.request.body.data;
-
+    pr.law_type = pr['law-type']
     
 
     //check if a promise is already created with same parameters
     const bills = await strapi.entityService.findMany('api::promise.promise', {      
-      filters: { party: pr.party, law: pr.law, name: pr.name}  
+      filters: { party: pr.party, law_type: pr.law_type }  
     });
 
     if(bills.length > 0) {
-      return ctx.badRequest('This bill already exists', {  })
+      return ctx.badRequest('You already have a similar bill', {  })
     }
 
     const party = await strapi.entityService.findOne('api::party.party', pr.party, {      

@@ -57,6 +57,15 @@
     },
     "elections_occurred": {
       "type": "boolean"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "NEW",
+        "ELECTIONS",
+        "PARLIAMENT"
+      ],
+      "default": "NEW"
     }
   }
 }
