@@ -46,20 +46,18 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         outParties.push(topParty)
       }
       total += 1000
+      await strapi.entityService.create('api::block-result.block-result', {
+        data: {
+          block: block.id,
+          party: topParty,
+          election: electionID,
+          publishedAt: new Date()
+        }
+      })
     }))
 
     console.log(votes)
     await Promise.all(parties.map(async (p) => {
-      try {
-        /* await strapi.service('api::party-result.party-result').create({
-            party: p.id,
-            election: electionID,
-            seats: votes[p.id.toString(10)] / total * 50
-        }) */
-      } catch (e) {
-        console.log(e)
-      }
-
       console.log(votes[p.id.toString(10)])
       console.log(total)
 

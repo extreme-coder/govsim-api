@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "block_results",
+  "info": {
+    "singularName": "block-result",
+    "pluralName": "block-results",
+    "displayName": "Block Result",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "block": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::block.block"
+    },
+    "party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "election": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::election.election"
+    }
+  }
+}
