@@ -28,7 +28,8 @@
       "target": "api::party-template.party-template"
     },
     "points": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "default": "0"
     },
     "seats": {
       "type": "integer",
