@@ -26,7 +26,7 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
               support: s,
             },
           });
-          if (s > block.highest_support && s.party.id !== block.preferred_party.id) {
+          if (s > block.highest_support && p.party.id !== block.preferred_party.id) {
             await strapi.entityService.update('api::party.party', block.preferred_party.id, {
               data: {
                 budget: parseInt(block.preferred_party.budget) - parseInt(block.wealth)
