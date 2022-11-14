@@ -23,19 +23,15 @@ module.exports = createCoreController('api::population-attribute.population-attr
           filters: { block: b.id, election: election },
           populate: {party: true}
         });
-        await Promise.all(results.map(async (r) => {
-          console.log(r)
-          console.log(r.party.id)
-          if (labels.includes(r.party.id)) {
-            data[labels.indexOf(r.party.id)] = data[labels.indexOf(r.party.id)] + 1
+        await Promise.all(results.map(async (r) => {          
+          if (labels.includes(r.party.attributes.name)) {
+            data[labels.indexOf(r.party.attributes.name)] = data[labels.indexOf(r.party.attributes.name)] + 1
           } else {
-            labels.push(r.party.id)
+            labels.push(r.party.attributes.name)
             data.push(1)
-            console.log('test')
           }
         }))
-      }))
-      console.log({labels: labels, data: data})
+      }))      
       return {demo: d.name, labels: labels, data: data}
     }))
     return objs.filter((o) => o.labels.length > 0)
