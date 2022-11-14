@@ -26,7 +26,7 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
               support: s,
             },
           });
-          if (s > block.highest_support && (p.party.id !== block.preferred_party.id) && !(block.preferred_party)) {
+          if (s > block.highest_support && (!(block.preferred_party) || p.party.id !== block.preferred_party.id)) {
             if (block.preferred_party) {
               await strapi.entityService.update('api::party.party', block.preferred_party.id, {
                 data: {
