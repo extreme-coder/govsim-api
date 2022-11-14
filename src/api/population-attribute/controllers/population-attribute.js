@@ -38,6 +38,6 @@ module.exports = createCoreController('api::population-attribute.population-attr
       console.log({labels: labels, data: data})
       return {demo: d.name, labels: labels, data: data}
     }))
-    return objs
+    return objs.filter((o) => o.labels.length > 0)
   }
 }));
