@@ -24,10 +24,10 @@ module.exports = createCoreController('api::population-attribute.population-attr
           populate: {party: true}
         });
         await Promise.all(results.map(async (r) => {          
-          if (labels.includes(r.party.attributes.name)) {
-            data[labels.indexOf(r.party.attributes.name)] = data[labels.indexOf(r.party.attributes.name)] + 1
+          if (labels.includes(r.party.name)) {
+            data[labels.indexOf(r.party.name)] = data[labels.indexOf(r.party.name)] + 1
           } else {
-            labels.push(r.party.attributes.name)
+            labels.push(r.party.name)
             data.push(1)
           }
         }))
