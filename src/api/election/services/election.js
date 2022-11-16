@@ -11,13 +11,14 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
     let parties = await strapi.service('api::party.party').find({ country: countryID })
     parties = parties.results
     let votes = {}
+    let effs = {}
     parties.map(async (par) => {
       votes[par.id] = 0
+      effs[par.id] = await strapi.service('api::party.party').getEfficiency(par.id)
       await strapi.entityService.update('api::party.party', par.id, {
         data: {ready_for_election: false}
       })
     })
-
     const blocks = await strapi.entityService.findMany('api::block.block', { 
       filters: {country: countryID}
     })
@@ -40,8 +41,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
           topParty = s.party.id
         }
       })
-      console.log(topParty)
-      votes[topParty] += 1000
+      votes[topParty] += (5000 + 5000*effs[topParty])
       if (votes[topParty] / 1000 >= blocks.length / 2 - 1){
         outParties.push(topParty)
       }

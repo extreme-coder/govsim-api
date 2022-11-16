@@ -36,6 +36,7 @@
       "type": "enumeration",
       "enum": [
         "NEW",
+        "PROPOSED",
         "IN_VOTE",
         "PASSED"
       ],
