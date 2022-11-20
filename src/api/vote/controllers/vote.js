@@ -10,6 +10,15 @@ module.exports = createCoreController('api::vote.vote', ({ strapi }) =>  ({
   async create(ctx) {
     
     const vote = ctx.request.body.data
+
+    //check if there is already a promise with status in vote
+    const promises = await strapi.entityService.findMany('api::promise.promise', {
+      filters: { status: 'IN_VOTE', country: vote.country },
+      populate: '*'
+    })
+    if(promises.length > 0) {
+      return ctx.badRequest('There is already a Vote in Session', {  })
+    }
     
     await strapi.entityService.update('api::promise.promise', vote.promise, {
       data: {
