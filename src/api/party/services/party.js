@@ -19,7 +19,20 @@ module.exports = createCoreService('api::party.party', ({ strapi }) => ({
         total++
       }
     })
+    if (total === 0) {
+      return 1
+    }
     return parseFloat(passed)/parseFloat(total)
+  },
+  async joinParliament(partyId) {
+    console.log("service called")
+    const promises = await strapi.entityService.findMany('api::promise.promise', { filters: { party: partyId } })
+    promises.map(async (p) => {
+      console.log(`status is ${p.status}`)
+      if (p.status === "NEW") {
+        await strapi.entityService.update('api::promise.promise', p.id, { data: { status: "PROPOSED" } })
+      }
+    })
   },
 
 }));

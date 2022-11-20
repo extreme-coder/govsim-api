@@ -19,6 +19,8 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         data: {ready_for_election: false}
       })
     })
+    console.log("starting votes:")
+    console.log(votes)
     const blocks = await strapi.entityService.findMany('api::block.block', { 
       filters: {country: countryID}
     })
@@ -26,7 +28,6 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
     let outParties = [] 
 
     await Promise.all(blocks.map(async (block) => {
-      console.log(block)
       let topSupport = 0
       let topParty = -1
       let supports = await strapi.entityService.findMany('api::party-support.party-support', {
@@ -34,36 +35,45 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         populate: { party: true }
       })
       supports.map((s) => {
-        console.log(s)
-        console.log(topSupport)
-        if ( parseInt(s.support) > topSupport && !outParties.includes(s.party.id) ) {
+        if ( parseInt(s.support) >= topSupport && !outParties.includes(s.party.id) ) {
           topSupport = parseInt(s.support)
           topParty = s.party.id
         }
       })
-      votes[topParty] += (5000 + 5000*effs[topParty])
-      if (votes[topParty] / 1000 >= blocks.length / 2 - 1){
-        outParties.push(topParty)
-      }
-      total += 1000
-      await strapi.entityService.create('api::block-result.block-result', {
-        data: {
-          block: block.id,
-          party: topParty,
-          election: electionID,
-          publishedAt: new Date()
+      if (topParty !== -1) {
+        console.log("test")
+        console.log(effs[topParty])
+        console.log(5000 + 5000*effs[topParty])
+        votes[topParty] += (5000 + 5000*effs[topParty])
+        if (votes[topParty] / 10000 >= blocks.length / 2 - 1){
+          outParties.push(topParty)
         }
-      })
+        total += (5000 + 5000 * effs[topParty]) 
+        console.log(topParty)
+        console.log(votes[topParty])
+        await strapi.entityService.create('api::block-result.block-result', {
+          data: {
+            block: block.id,
+            party: topParty,
+            election: electionID,
+            publishedAt: new Date()
+          }
+        })
+      }
     }))
 
     console.log(votes)
     await Promise.all(parties.map(async (p) => {
-      console.log(votes[p.id.toString(10)])
+      console.log("total:")
       console.log(total)
-      var points = p.points + (votes[p.id.toString(10)] * 4000) / total
+      if (votes[p.id.toString(10)] > 0) {
+        console.log("if statement entered")
+        await strapi.service('api::party.party').joinParliament(p.id)
+      }
+      var points = parseInt(p.points) + parseInt((votes[p.id.toString(10)] * 4000) / total)
       await strapi.entityService.update('api::party.party', p.id, {
         data: {
-          seats: (votes[p.id.toString(10)] * 400) / total,
+          seats: Math.floor((votes[p.id.toString(10)] * 400) / total),
           points: points 
         },
       });
