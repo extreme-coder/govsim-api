@@ -42,11 +42,5 @@ module.exports = createCoreController('api::country.country', ({ strapi }) =>  (
     return response;
   },
 
-  async find(ctx) {    
-    ctx.query.filters = { ...ctx.query.filters, is_public: { '$eq': 'true' } }    
-    const { data, meta } = await super.find(ctx);
-    return { data, meta };
-  }
-
   
 }));

@@ -19,7 +19,12 @@ module.exports = createCoreController('api::party.party', ({ strapi }) => ({
       budget: partyTemplate.default_budget
     };
 
+    // check party name should be less than 30 characters
+    if (ctx.request.body.data.name.length > 30) {
+      return ctx.badRequest('Party name should be less than 30 characters', {  });
+    }
 
+    
     const response = await strapi.entityService.create('api::party.party', ctx.request.body);
     const partySupports = await strapi.entityService.findMany('api::party-support.party-support', {
       filters: {party_template: ctx.request.body.data.template},
