@@ -13,6 +13,10 @@ module.exports = createCoreController('api::promise.promise', ({ strapi }) =>  (
     const pr = ctx.request.body.data;
     pr.law_type = pr['law-type']
     
+    //validate that promise has a name
+    if(!pr.name) {
+      return ctx.badRequest('Bill must have a name', {  })
+    }
 
     //check if a promise is already created with same parameters
     const bills = await strapi.entityService.findMany('api::promise.promise', {      
