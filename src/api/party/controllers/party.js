@@ -51,17 +51,32 @@ module.exports = createCoreController('api::party.party', ({ strapi }) => ({
     return response;
   },
 
-  async update(ctx) {
+  async update(ctx) {    
     const { data, meta } = await super.update(ctx)
     
     //load party with country
     const party = await strapi.entityService.findOne('api::party.party', data.id, {
       populate: '*'
     })
-    
-    // check if all parties are ready
-    const parties = await strapi.entityService.findMany('api::party.party', {
+
+    //check if all parties are ready for election
+    let parties = await strapi.entityService.findMany('api::party.party', {
       filters: { country: party.country.id, ready_for_election: false }
+    })
+    if(parties.length === 0) {
+      //change country status to campaign
+      await strapi.entityService.update('api::country.country', party.country.id, {
+        data: {
+          status: 'CAMPAIGN',
+          next_election: new Date(new Date().getTime() + party.country.campaign_period * 60000)
+        }
+      })
+    }
+
+    
+    // check if all parties have finished their campaign 
+    parties = await strapi.entityService.findMany('api::party.party', {
+      filters: { country: party.country.id, finished_campaign: false }
     })
     
     if (parties.length == 0) {
@@ -79,8 +94,12 @@ module.exports = createCoreController('api::party.party', ({ strapi }) => ({
       })
       strapi.io.to(party.country.id).emit('election_underway', {})
     }
-    if(data.attributes.ready_for_election) {
+    
+    if(ctx.request.body.data.ready_for_election) {
       strapi.io.to(party.country.id).emit('ready_for_election', {id:data.id, name:data.attributes.name})
+    }
+    if(ctx.request.body.data.finished_campaign) {
+      strapi.io.to(party.country.id).emit('finished_campaign', {id:data.id, name:data.attributes.name})
     }
   
     return { data, meta }
