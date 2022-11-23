@@ -52,7 +52,7 @@ module.exports = {
       console.log('country', country)      
 
       //check if next_campaign is in the past
-      if (country.status === 'PARLIAMENT' && country.next_campaign < new Date()) {
+      if (country.status === 'PARLIAMENT' && new Date(country.next_campaign).getTime() < new Date().getTime()) {
         //change country status to campaign
         await strapi.entityService.update('api::country.country', country.id, {
           data: {
@@ -60,10 +60,12 @@ module.exports = {
           }
         })        
         //change all parties finished_campaign to false
-    
+        const parties = await strapi.entityService.findMany('api::party.party', {
+          filters: { country: country.id },
+        })
         await strapi.db.query('api::party.party').updateMany({
           where: {
-            country: country.id
+            id: parties.map((c) => c.id)
           },
           data: {
             finished_campaign: false, ready_for_election: false
@@ -73,7 +75,7 @@ module.exports = {
         //send socket message for campaign started
         strapi.io.to(country.id).emit('campaign_started', {})
       }      
-      else if (country.status === 'CAMPAIGN' && new Date(country.next_election) < new Date()) {
+      else if (country.status === 'CAMPAIGN' && new Date(country.next_election).getTime() < new Date().getTime()) {
         console.log("time to call election")
         //check if any election is pending 
         const elections = await strapi.entityService.findMany('api::election.election', {
