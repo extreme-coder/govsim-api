@@ -94,7 +94,7 @@ module.exports = {
               elections_occurred: true, status: 'ELECTIONS'
             }
           })
-          strapi.io.to(party.country.id).emit('election_underway', {})
+          strapi.io.to(country.id).emit('election_underway', {})
         }
       }
     })

@@ -54,6 +54,11 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
             publishedAt: new Date()
           }
         })
+        p = await strapi.entityService.findOne('api::party.party', topParty)
+        await strapi.entityService.update('api::party.party', topParty, {
+          budget: p.budget + block.wealth
+        })
+
       }
     }))
 
@@ -69,7 +74,6 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
           points: points 
         },
       });
-
     }))
 
     await strapi.entityService.update('api::country.country', countryID, {
