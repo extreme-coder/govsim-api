@@ -8,8 +8,12 @@ const { createCoreService } = require('@strapi/strapi').factories;
 
 module.exports = createCoreService('api::election.election', ({ strapi }) => ({
   async callElection(countryID, electionID) {
-    let parties = await strapi.service('api::party.party').find({ country: countryID })
-    parties = parties.results
+    let parties = await strapi.entityService.findMany('api::party.party', {
+      filters: {
+        country: countryID
+      }
+    })
+    //parties = parties.results
     let votes = {}
     let effs = {}
     parties.map(async (par) => {
@@ -41,7 +45,9 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         }
       })
       if (topParty !== -1) {
-        votes[topParty] += (5000 + 5000*effs[topParty])
+        console.log('effs:')
+        console.log(effs)
+        votes[topParty] += (5000 + 5000 * effs[topParty])
         if (votes[topParty] / 10000 >= blocks.length / 2 - 1){
           outParties.push(topParty)
         }
@@ -56,7 +62,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         })
         let p = await strapi.entityService.findOne('api::party.party', topParty)
         await strapi.entityService.update('api::party.party', topParty, {
-          data: { budget: (p.budget + block.wealth) }
+          data: { budget: (parseInt(p.budget) + parseInt(block.wealth)) }
         })
 
       }
