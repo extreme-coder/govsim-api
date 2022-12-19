@@ -56,7 +56,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         })
         let p = await strapi.entityService.findOne('api::party.party', topParty)
         await strapi.entityService.update('api::party.party', topParty, {
-          budget: p.budget + block.wealth
+          data: { budget: (p.budget + block.wealth) }
         })
 
       }
