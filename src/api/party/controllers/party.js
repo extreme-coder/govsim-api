@@ -24,6 +24,17 @@ module.exports = createCoreController('api::party.party', ({ strapi }) => ({
       return ctx.badRequest('Party name should be less than 30 characters', {  });
     }
 
+    //check that party template is not already in use
+    const parties = await strapi.entityService.findMany('api::party.party', {
+      filters: { 
+        template: ctx.request.body.data.template, 
+        country: ctx.request.body.data.country
+      }
+    })
+    if (parties.length > 0) {
+      return ctx.badRequest('This party template is already in use', {  });
+    }
+
     
     const response = await strapi.entityService.create('api::party.party', ctx.request.body);
     const partySupports = await strapi.entityService.findMany('api::party-support.party-support', {
