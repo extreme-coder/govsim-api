@@ -35,6 +35,13 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
     })
     console.log(partyNum)
 
+    const promises = await strapi.entityService.findMany('api::promise.promise', {
+      filters: {
+        country: ballot.country,
+        law: law.id
+      }
+    })
+
     if (ballotNum === partyNum) {
       const ballots = await strapi.entityService.findMany('api::ballot.ballot', {
         filters: { vote: ballot.vote },
@@ -74,6 +81,11 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
         })
         await strapi.entityService.update('api::vote.vote', vote.id, {
           data: { status: 'PASSED' }
+        })
+        promises.map(async (p) => {
+          await strapi.entityService.update('api::promise.promise', p.id, {
+            data: { status: 'PASSED' }
+          })
         })
       } else {        
         await strapi.entityService.update('api::vote.vote', vote.id, {
