@@ -38,7 +38,8 @@
         "NEW",
         "PROPOSED",
         "IN_VOTE",
-        "PASSED"
+        "PASSED",
+        "FAILED"
       ],
       "default": "NEW"
     },

@@ -91,6 +91,9 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
         await strapi.entityService.update('api::vote.vote', vote.id, {
           data: { status: 'FAILED' }
         })
+        await strapi.entityService.update('api::promise.promise', bill.id, {
+          data: { status: 'FAILED' }
+        })
       }
     }
 

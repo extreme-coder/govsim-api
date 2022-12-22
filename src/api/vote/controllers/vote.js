@@ -43,7 +43,7 @@ module.exports = createCoreController('api::vote.vote', ({ strapi }) =>  ({
       party: partyId, 
       publishedAt: new Date() }
     });
-
+    vote.partyId = partyId
     strapi.io.to(ctx.request.body.data.country).emit('new_vote', vote)
 
     return response;
