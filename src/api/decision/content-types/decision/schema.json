@@ -16,11 +16,6 @@
     "descrip": {
       "type": "string"
     },
-    "outcomes": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::outcome.outcome"
-    },
     "supporters": {
       "type": "relation",
       "relation": "oneToMany",

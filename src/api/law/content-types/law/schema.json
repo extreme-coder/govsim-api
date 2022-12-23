@@ -5,7 +5,8 @@
     "singularName": "law",
     "pluralName": "laws",
     "displayName": "Law",
-    "name": "law"
+    "name": "law",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -48,11 +49,6 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::population-attribute.population-attribute"
-    },
-    "headlines": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::headline.headline"
     }
   }
 }
