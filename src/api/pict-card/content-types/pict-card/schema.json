@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pict_cards",
+  "info": {
+    "singularName": "pict-card",
+    "pluralName": "pict-cards",
+    "displayName": "pict_card"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "pict_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pict-category.pict-category"
+    },
+    "is_used": {
+      "type": "boolean",
+      "default": false
+    },
+    "cat": {
+      "type": "integer"
+    }
+  }
+}

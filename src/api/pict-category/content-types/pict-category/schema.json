@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pict_categories",
+  "info": {
+    "singularName": "pict-category",
+    "pluralName": "pict-categories",
+    "displayName": "pict_category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
