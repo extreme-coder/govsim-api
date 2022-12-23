@@ -21,11 +21,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::party-template.party-template"
-    },
-    "fav_stats": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::base-stat.base-stat"
     }
   }
 }

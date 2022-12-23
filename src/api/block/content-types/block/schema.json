@@ -35,11 +35,6 @@
     "highest_support": {
       "type": "biginteger"
     },
-    "fav_stats": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::base-stat.base-stat"
-    },
     "parent_block": {
       "type": "relation",
       "relation": "oneToOne",

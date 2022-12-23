@@ -5,7 +5,8 @@
     "singularName": "modifier",
     "pluralName": "modifiers",
     "displayName": "Modifier",
-    "name": "modifier"
+    "name": "modifier",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -19,13 +20,11 @@
     "descriptor": {
       "type": "string"
     },
-    "affected_stat": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::base-stat.base-stat"
-    },
     "amount": {
       "type": "integer"
+    },
+    "affected_stat": {
+      "type": "string"
     }
   }
 }
