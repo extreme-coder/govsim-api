@@ -42,7 +42,6 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
                 party: p.party.id
               },
             });
-            strapi.io.to(block.country.id).emit('new_story', s)
           }
         })        
       })
