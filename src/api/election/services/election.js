@@ -16,11 +16,15 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
     //parties = parties.results
     let votes = {}
     let effs = {}
+    let budgets = {}
     parties.map(async (par) => {
       votes[par.id] = 0
+      budgets[par.id] = 0
       effs[par.id] = await strapi.service('api::party.party').getEfficiency(par.id)
       await strapi.entityService.update('api::party.party', par.id, {
-        data: {ready_for_election: false}
+        data: {
+          ready_for_election: false,
+        }
       })
     })
     console.log("starting votes:")
@@ -61,11 +65,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
             publishedAt: new Date()
           }
         })
-        let p = await strapi.entityService.findOne('api::party.party', topParty)
-        await strapi.entityService.update('api::party.party', topParty, {
-          data: { budget: (parseInt(p.budget) + parseInt(block.wealth)) }
-        })
-
+        budgets[topParty] = parseInt(budgets[topParty]) + parseInt(block.wealth)
       }
     }))
 
@@ -79,7 +79,8 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
       await strapi.entityService.update('api::party.party', p.id, {
         data: {
           seats: Math.floor((votes[p.id.toString(10)] * 400) / total),
-          points: points 
+          points: points,
+          budget: budgets[p.id.toString(10)]
         },
       });
       if (prevSeats === 0 && Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)) {
