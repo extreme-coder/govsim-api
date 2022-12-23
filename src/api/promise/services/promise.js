@@ -33,7 +33,7 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
                 preferred_party: p.party.id
               },
             });
-            const s = await strapi.entityService.create('api::story.story', block.id, {
+            const s = await strapi.entityService.create('api::story.story', {
               data: {
                 headline: `${block.demographic.name} endorse ${p.party.name} in upcoming election`,
                 body: `Owing to recent campaign initiatives announced by the ${p.party.name}, numerous ${block.demographic.name} organizations across ${block.country.name} have decided to pledge their support.`,

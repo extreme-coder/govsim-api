@@ -87,7 +87,7 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
             data: { status: 'PASSED' }
           })
         })
-        await strapi.entityService.create('api::story.story', block.id, {
+        await strapi.entityService.create('api::story.story', {
           data: {
             headline: `${bill.name} passed!`,
             body: `After a long session of parliament, MPs managed to get ${bill.name}, the new bill in support of ${law.name} passed with a close majority.`,
