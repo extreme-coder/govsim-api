@@ -30,6 +30,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
     })
     let total = 0
     let outParties = [] 
+    const country = await strapi.entityService.findOne('api::country.country', countryID)
 
     await Promise.all(blocks.map(async (block) => {
       let topSupport = 0
@@ -70,6 +71,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
 
     console.log(votes)
     await Promise.all(parties.map(async (p) => {
+      const prevSeats = p.seats
       if (votes[p.id.toString(10)] > 0) {
         await strapi.service('api::party.party').joinParliament(p.id)
       }
@@ -80,6 +82,26 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
           points: points 
         },
       });
+      if (prevSeats === 0 && Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)) {
+        await strapi.entityService.create('api::story.story', block.id, {
+          data: {
+            headline: `Newcomer party joins ${country.name} parliament`,
+            body: `The elections concluded yesterday, and brought sweeping changes to Parliament; among these was the ${p.name}, who now have members in parliament for the first time! Time will tell whether their initiatives will have any success in the cuthroat world of ${country.name} politics.`,
+            country: countryID,
+            party: p.id,
+          },
+        });
+      }
+      if (prevSeats > Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)) {
+        await strapi.entityService.create('api::story.story', block.id, {
+          data: {
+            headline: `${p.name} suffers heavy losses in recent election`,
+            body: `Multiple MPs from the ${p.name} were seen leaving the parliament chambers today as results from the recent election rolled in. The ${p.name} lost ${prevSeats - Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)} seats. Will they ever recover from this defeat?`,
+            country: countryID,
+            party: p.id,
+          },
+        });
+      }
     }))
 
     await strapi.entityService.update('api::country.country', countryID, {

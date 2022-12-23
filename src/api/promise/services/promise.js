@@ -12,7 +12,7 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
     groups.map(async (group) => {
       const blocks = await strapi.entityService.findMany('api::block.block', {      
         filters: { demographic: group.id },
-        populate: { preferred_party: true }
+        populate: { preferred_party: true, demographic: true, country: true }
       });
       blocks.map(async (block) => {        
         const party_support = await strapi.entityService.findMany('api::party-support.party-support', {      
@@ -33,6 +33,16 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
                 preferred_party: p.party.id
               },
             });
+            const s = await strapi.entityService.create('api::story.story', block.id, {
+              data: {
+                headline: `${block.demographic.name} endorse ${p.party.name} in upcoming election`,
+                body: `Owing to recent campaign initiatives announced by the ${p.party.name}, numerous ${block.demographic.name} organizations across ${block.country.name} have decided to pledge their support.`,
+                is_decision: false,
+                country: block.country.id,
+                party: p.party.id
+              },
+            });
+            strapi.io.to(block.country.id).emit('new_story', s)
           }
         })        
       })
