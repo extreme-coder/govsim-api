@@ -5,7 +5,8 @@
     "singularName": "country-law",
     "pluralName": "country-laws",
     "displayName": "Country-law",
-    "name": "country-law"
+    "name": "country-law",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -22,6 +23,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::law.law"
+    },
+    "law_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
     }
   }
 }
