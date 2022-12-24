@@ -98,6 +98,9 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
             all_parties: true
           },
         });
+        await strapi.entityService.update('api::party.party', bill.party.id, {
+          data: { points: bill.party.points + 100 }
+        })
       } else {        
         await strapi.entityService.update('api::vote.vote', vote.id, {
           data: { status: 'FAILED' }
