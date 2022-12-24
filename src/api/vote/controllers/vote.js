@@ -43,7 +43,14 @@ module.exports = createCoreController('api::vote.vote', ({ strapi }) =>  ({
       party: partyId, 
       publishedAt: new Date() }
     });
+    
+    const promise = await strapi.entityService.findOne('api::promise.promise', vote.promise, {
+      populate: '*'
+    })
+
     vote.partyId = partyId
+    vote.promise = promise
+    vote.voteId = response.data.id
     strapi.io.to(ctx.request.body.data.country).emit('new_vote', vote)
 
     return response;

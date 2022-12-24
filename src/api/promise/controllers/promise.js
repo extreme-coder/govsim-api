@@ -20,7 +20,7 @@ module.exports = createCoreController('api::promise.promise', ({ strapi }) =>  (
 
     //check if a promise is already created with same parameters
     const bills = await strapi.entityService.findMany('api::promise.promise', {      
-      filters: { party: pr.party, law_type: pr.law_type }  
+      filters: { party: pr.party, law_type: pr.law_type, status:['NEW', 'PROPOSED'] }  
     });
 
     if(bills.length > 0) {

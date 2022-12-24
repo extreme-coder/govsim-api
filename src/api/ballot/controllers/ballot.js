@@ -46,7 +46,7 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
         populate: { promise: true }
       })
       const bill = await strapi.entityService.findOne('api::promise.promise', vote.promise.id, {
-        populate: { country_law: true, law: true, country: true }
+        populate: '*'
       })
 
       const law = bill.law
@@ -94,7 +94,7 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
             headline: `${bill.name} passed!`,
             body: `After a long session of parliament, MPs managed to get ${bill.name}, the new bill in support of ${law.name} passed with a close majority.`,
             country: bill.country.id,
-            party: p.party.id,
+            party: bill.party.id,
             all_parties: true
           },
         });
