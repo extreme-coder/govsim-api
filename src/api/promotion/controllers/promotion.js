@@ -9,7 +9,8 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::promotion.promotion', ({ strapi }) => ({
   async create(ctx) {
     //check if party has enough budget
-    const party = await strapi.entityService.findOne('api::party.party', promotion.party)
+    const partyId = ctx.request.body.data.party
+    const party = await strapi.entityService.findOne('api::party.party', partyId)
     if(party.budget < promotion.budget) {
       return ctx.badRequest('Party does not have enough budget', {  })
     }
