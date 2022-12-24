@@ -8,11 +8,12 @@ const { createCoreService } = require('@strapi/strapi').factories;
 
 module.exports = createCoreService('api::party.party', ({ strapi }) => ({
   async getEfficiency(partyId) {
-    const promises = await strapi.entityService.findMany('api::promise.promise', { filters: { party: partyId } })
+    const promises = await strapi.entityService.findMany('api::promise.promise', { filters: { party: partyId }, populate: { country_law: true, law: true } })
     let total = 0
     let passed = 0
-    promises.map((p) => {
-      if (p.status === "PASSED") {
+    promises.map(async (p) => {
+      const c = await strapi.entityService.findOne('api::country-law.country-law', p.country_law.id, { populate: { passed_law: true } })
+      if (c.passed_law.id === p.law.id) {
         passed++
       }
       if (p.status !== "NEW") {
