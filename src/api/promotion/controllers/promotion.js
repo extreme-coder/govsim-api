@@ -11,7 +11,7 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
     //check if party has enough budget
     const partyId = ctx.request.body.data.party
     const party = await strapi.entityService.findOne('api::party.party', partyId)
-    if(party.budget < promotion.budget) {
+    if(party.budget < ctx.request.body.data.budget) {
       return ctx.badRequest('Party does not have enough budget', {  })
     }
     
