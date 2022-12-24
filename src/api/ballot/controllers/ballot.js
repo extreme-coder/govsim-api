@@ -35,7 +35,13 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
     })
     console.log(partyNum)
 
-
+    const bill = await strapi.entityService.findOne('api::promise.promise', vote.promise.id, {
+      populate: '*'
+    })
+    const l = await strapi.entityService.findOne('api::law.law', bill.law.id, {
+      populate: '*'
+    })
+    strapi.service('api::promise.promise').updatePartySupport(l.groups_against, party.id, 0.9)
 
     if (ballotNum === partyNum) {
       const ballots = await strapi.entityService.findMany('api::ballot.ballot', {
@@ -44,9 +50,6 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
       })
       const vote = await strapi.entityService.findOne('api::vote.vote', ballot.vote, {
         populate: { promise: true }
-      })
-      const bill = await strapi.entityService.findOne('api::promise.promise', vote.promise.id, {
-        populate: '*'
       })
 
       const law = bill.law
