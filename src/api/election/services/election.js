@@ -70,6 +70,9 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
     }))
 
     console.log(votes)
+    let leftOutParties = []
+    let leftOutCount = 0.0
+    let leftOutSeats = 40.0
     await Promise.all(parties.map(async (p) => {
       const prevSeats = p.seats
       if (votes[p.id.toString(10)] > 0) {
@@ -78,11 +81,15 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
       var points = parseInt(p.points) + parseInt((votes[p.id.toString(10)] * 4000) / total)
       await strapi.entityService.update('api::party.party', p.id, {
         data: {
-          seats: Math.floor((votes[p.id.toString(10)] * 400) / total),
+          seats: Math.floor((votes[p.id.toString(10)] * 360) / total),
           points: points,
           budget: budgets[p.id.toString(10)]
         },
       });
+      if (Math.floor((votes[p.id.toString(10)] * 360) / total) === 0) {
+        leftOutParties.push(p.id)
+        leftOutCount++
+      }
       if (prevSeats === 0 && Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)) {
         await strapi.entityService.create('api::story.story', {
           data: {
@@ -104,6 +111,18 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         });
       }
     }))
+
+    leftOutParties.map(async (partyID) => {
+      const s = Math.floor(leftOutSeats / leftOutCount) + Math.round(Math.random()*4) - 2
+      leftOutSeats -= s
+      leftOutCount--
+      await strapi.entityService.update('api::party.party', partyID, {
+        data: {
+          seats: s,
+          budget: budgets[partyID.toString(10)]
+        }
+      })
+    })
 
     await strapi.entityService.update('api::country.country', countryID, {
       data: {
