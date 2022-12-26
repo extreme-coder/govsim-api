@@ -64,7 +64,8 @@
         "NEW",
         "CAMPAIGN",
         "ELECTIONS",
-        "PARLIAMENT"
+        "PARLIAMENT",
+        "PAUSED"
       ],
       "default": "NEW"
     },
