@@ -105,7 +105,7 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
           },
         });
         await strapi.entityService.update('api::party.party', bill.party.id, {
-          data: { points: bill.party.points + 100 }
+          data: { points: parseInt(bill.party.points) + 100 }
         })
 
         strapi.io.to(party.country.id).emit('vote_passed', bill)
