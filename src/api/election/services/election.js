@@ -97,6 +97,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
             body: `The elections concluded yesterday, and brought sweeping changes to Parliament; among these was the ${p.name}, who now have members in parliament for the first time! Time will tell whether their initiatives will have any success in the cuthroat world of ${country.name} politics.`,
             country: countryID,
             party: p.id,
+            publishedAt: new Date()
           },
         });
       }
@@ -107,6 +108,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
             body: `Multiple MPs from the ${p.name} were seen leaving the parliament chambers today as results from the recent election rolled in. The ${p.name} lost ${prevSeats - Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)} seats. Will they ever recover from this defeat?`,
             country: countryID,
             party: p.id,
+            publishedAt: new Date()
           },
         });
       }

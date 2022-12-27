@@ -17,10 +17,16 @@ module.exports = createCoreController('api::message.message', ({ strapi }) =>  (
   },
   async messagesRead(ctx) {    
     const {from_party, to_party }= ctx.request.body.data 
-
-    const messages = await strapi.entityService.findMany('api::message.message', {
-      filters: { from_party: from_party, to_party: to_party }
-    })
+    let messages
+    if(from_party == -1) {
+      messages = await strapi.entityService.findMany('api::message.message', {
+        filters: { to_party: to_party, is_group: true, is_read: false },
+      })
+    } else {
+      messages = await strapi.entityService.findMany('api::message.message', {
+        filters: { from_party: from_party, to_party: to_party, is_group: false, is_read: false },
+      })
+    }
 
     //updateMany doesnt work with relations, so get all Ids to be updated and update at once
     const response = await strapi.db.query('api::message.message').updateMany({

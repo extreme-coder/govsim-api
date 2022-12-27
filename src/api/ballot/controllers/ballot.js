@@ -101,7 +101,8 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
             body: `After a long session of parliament, MPs managed to get ${bill.name}, the new bill in support of ${law.name} passed with a close majority.`,
             country: bill.country.id,
             party: bill.party.id,
-            all_parties: true
+            all_parties: true,
+            publishedAt: new Date()
           },
         });
         await strapi.entityService.update('api::party.party', bill.party.id, {
