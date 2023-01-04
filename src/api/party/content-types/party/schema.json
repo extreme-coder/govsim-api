@@ -65,6 +65,10 @@
     "finished_campaign": {
       "type": "boolean",
       "default": false
+    },
+    "ready_for_parliament": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

@@ -26,4 +26,16 @@ module.exports = createCoreService('api::country.country', ({ strapi }) => ({
       });
   },
 
+  async updateAllParties(countryId, data) {    
+    const parties = await strapi.entityService.findMany('api::party.party', {
+      filters: { country: countryId },
+    })
+    await strapi.db.query('api::party.party').updateMany({
+      where: {
+        id: parties.map((c) => c.id)
+      },
+      data: data,
+    });
+  },
+
 }));

@@ -64,6 +64,7 @@
         "NEW",
         "CAMPAIGN",
         "ELECTIONS",
+        "COALITIONS",
         "PARLIAMENT",
         "PAUSED"
       ],
@@ -75,6 +76,12 @@
     "campaign_period": {
       "type": "integer",
       "default": 30
+    },
+    "next_parliament_session": {
+      "type": "datetime"
+    },
+    "coalition_period": {
+      "type": "integer"
     }
   }
 }
