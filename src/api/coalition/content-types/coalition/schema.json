@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coalitions",
+  "info": {
+    "singularName": "coalition",
+    "pluralName": "coalitions",
+    "displayName": "coalition",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "parties": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::party.party"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    }
+  }
+}

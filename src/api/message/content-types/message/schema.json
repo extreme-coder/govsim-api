@@ -47,6 +47,11 @@
     "is_cc": {
       "type": "boolean",
       "default": false
+    },
+    "coalition": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::coalition.coalition"
     }
   }
 }
