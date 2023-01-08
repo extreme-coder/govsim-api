@@ -82,6 +82,11 @@
     },
     "coalition_period": {
       "type": "integer"
+    },
+    "crises": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::crisis.crisis"
     }
   }
 }
