@@ -39,7 +39,8 @@ module.exports = createCoreService('api::promise.promise', ({ strapi }) => ({
                 body: `Owing to recent campaign initiatives announced by the ${p.party.name}, numerous ${block.demographic.name} organizations across ${block.country.name} have decided to pledge their support.`,
                 is_decision: false,
                 country: block.country.id,
-                party: p.party.id
+                party: p.party.id,
+                publishedAt: new Date()
               },
             });
           }

@@ -35,23 +35,26 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
     })
     console.log(partyNum)
 
+    const vote = await strapi.entityService.findOne('api::vote.vote', ballot.vote, {
+      populate: { promise: true }
+    })
+
     const bill = await strapi.entityService.findOne('api::promise.promise', vote.promise.id, {
       populate: '*'
     })
     const l = await strapi.entityService.findOne('api::law.law', bill.law.id, {
       populate: '*'
     })
-    strapi.service('api::promise.promise').updatePartySupport(l.groups_against, party.id, 0.9)
+    await strapi.service('api::promise.promise').updatePartySupport(l.groups_against, party.id, 0.9)
 
     if (ballotNum === partyNum) {
       const ballots = await strapi.entityService.findMany('api::ballot.ballot', {
         filters: { vote: ballot.vote },
         populate: { party: true }
       })
-      const vote = await strapi.entityService.findOne('api::vote.vote', ballot.vote, {
-        populate: { promise: true }
-      })
 
+
+      
       const law = bill.law
       const countryLaw = bill.country_law
 
@@ -98,12 +101,16 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
             body: `After a long session of parliament, MPs managed to get ${bill.name}, the new bill in support of ${law.name} passed with a close majority.`,
             country: bill.country.id,
             party: bill.party.id,
-            all_parties: true
+            all_parties: true,
+            publishedAt: new Date()
           },
         });
         await strapi.entityService.update('api::party.party', bill.party.id, {
-          data: { points: bill.party.points + 100 }
+          data: { points: parseInt(bill.party.points) + 100 }
         })
+
+        strapi.io.to(party.country.id).emit('vote_passed', bill)
+
       } else {        
         await strapi.entityService.update('api::vote.vote', vote.id, {
           data: { status: 'FAILED' }
@@ -111,6 +118,7 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
         await strapi.entityService.update('api::promise.promise', bill.id, {
           data: { status: 'FAILED' }
         })
+        strapi.io.to(party.country.id).emit('vote_failed', bill)
       }
     }
 

@@ -17,6 +17,12 @@ module.exports = {
           next_election: new Date(new Date().getTime() + election.country.election_period * 60000)
         }
       })
+      await strapi.entityService.update('api::country.country', election.country.id, {
+        data: {
+          next_parliament_session: new Date(new Date().getTime() + election.country.coalition_period * 60000)
+        }
+      })
+
       //update next campaign date by election period - campaign_period minutes
       await strapi.entityService.update('api::country.country', election.country.id, {
         data: {
@@ -32,7 +38,7 @@ module.exports = {
           id: parties.map((c) => c.id)
         },
         data: {
-          finished_campaign: false, ready_for_election: false
+          finished_campaign: false, ready_for_election: false, ready_for_parliament:false
         },
       });
 
@@ -45,7 +51,7 @@ module.exports = {
 
     //fetch all countries which are in status Parliament or Campaign
     const countries = await strapi.entityService.findMany('api::country.country', {
-      filters: { status: ['PARLIAMENT', 'CAMPAIGN'] },
+      filters: { status: ['PARLIAMENT', 'CAMPAIGN', 'COALITIONS'] },
     });
 
     countries.forEach(async (country) => {
@@ -72,8 +78,9 @@ module.exports = {
           },
         });
 
-        //send socket message for campaign started
-        strapi.io.to(country.id).emit('campaign_started', {})
+        //send socket message for campaign started        
+        strapi.io.to(country.id).emit('country_status_change', {status:'CAMPAIGN'})
+        
       }      
       else if (country.status === 'CAMPAIGN' && new Date(country.next_election).getTime() < new Date().getTime()) {
         console.log("time to call election")
@@ -96,6 +103,15 @@ module.exports = {
           })
           strapi.io.to(country.id).emit('election_underway', {})
         }
+      }
+      else if (country.status === 'COALITIONS' && new Date(country.next_parliament_session).getTime() < new Date().getTime()) {
+        console.log("time fo parliament session")                
+        await strapi.entityService.update('api::country.country', country.id, {
+          data: {
+            elections_occurred: true, status: 'PARLIAMENT'
+          }
+        })    
+        strapi.io.to(country.id).emit('country_status_change', {status:'PARLIAMENT'})              
       }
     })
 

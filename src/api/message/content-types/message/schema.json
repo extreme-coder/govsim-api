@@ -39,6 +39,19 @@
     "is_read": {
       "type": "boolean",
       "default": false
+    },
+    "is_group": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_cc": {
+      "type": "boolean",
+      "default": false
+    },
+    "coalition": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::coalition.coalition"
     }
   }
 }
