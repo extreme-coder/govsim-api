@@ -37,6 +37,9 @@
     "default_budget": {
       "type": "integer",
       "default": 1000
+    },
+    "description": {
+      "type": "text"
     }
   }
 }
