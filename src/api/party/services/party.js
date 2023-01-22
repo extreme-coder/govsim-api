@@ -35,5 +35,43 @@ module.exports = createCoreService('api::party.party', ({ strapi }) => ({
       }
     })
   },
+  async updateTurn(countryId) {
+    let party = null
+    //get all parties
+    const parties = await strapi.entityService.findMany('api::party.party', { filters: { country: countryId } })
+    //loop thru parties and party after the prty with is_your_turn = true is the next party
+    for(let i = 0; i < parties.length; i++) {
+      if (parties[i].is_turn) {
+        if (i === parties.length - 1) {
+          await strapi.entityService.update('api::party.party', parties[0].id, { data: { is_turn: true } })
+          party = parties[0]
+          //a round is finished, increment round on country
+          const country = await strapi.entityService.findOne('api::country.country', countryId)
+          const newRound = country.round + 1
+          await strapi.entityService.update('api::country.country', countryId, { data: { round: newRound } })
+          //if round is 3, call election
+          if (newRound === 3) {
+            await strapi.entityService.create('api::election.election', {
+              data: {
+                country: countryId,
+                publishedAt: new Date()
+              },
+            })            
+            //update country status to ELECTIONS
+            await strapi.entityService.update('api::country.country', countryId, { data: { status: "ELECTIONS" } })
+            //send socket message to country for election
+            strapi.io.to(countryId).emit('election_underway', {})            
+          }                    
+        } else {          
+          await strapi.entityService.update('api::party.party', parties[i+1].id, { data: { is_turn: true } })
+          party = parties[i+1]
+        }
+        await strapi.entityService.update('api::party.party', parties[i].id, { data: { is_turn: false } })
+        break
+      }
+    }
+    //send socket message to country that turn has changed
+    strapi.io.to(countryId).emit('new_turn', {party:party})
+  }
 
 }));

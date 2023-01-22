@@ -5,7 +5,8 @@
     "singularName": "department",
     "pluralName": "departments",
     "displayName": "Department",
-    "name": "department"
+    "name": "department",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -21,6 +22,16 @@
     },
     "budget": {
       "type": "biginteger"
+    },
+    "card_image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

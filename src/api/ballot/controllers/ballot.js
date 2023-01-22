@@ -120,6 +120,9 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
         })
         strapi.io.to(party.country.id).emit('vote_failed', bill)
       }
+      //update the turn of parties
+      await strapi.service('api::party.party').updateTurn(party.country.id)
+
     }
 
     return response;

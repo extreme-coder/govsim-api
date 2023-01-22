@@ -87,6 +87,10 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::crisis.crisis"
+    },
+    "round": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

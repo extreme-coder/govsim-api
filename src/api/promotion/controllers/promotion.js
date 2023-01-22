@@ -12,7 +12,9 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
     console.log(ctx.request.body.data)
     //check if party has enough budget
     const partyId = ctx.request.body.data.party
-    const party = await strapi.entityService.findOne('api::party.party', partyId)
+    const party = await strapi.entityService.findOne('api::party.party', partyId, {
+      populate: { country: true }
+    })
 
     console.log(party)
 
@@ -42,6 +44,8 @@ module.exports = createCoreController('api::promotion.promotion', ({ strapi }) =
     } else {
       strapi.service('api::promise.promise').updatePartySupport(law.groups_against, promotion.party, (1.25 - (promotion.budget / 100 - 10)**2 / 360))
     }
+
+    await strapi.service('api::party.party').updateTurn(party.country.id)
 
     return response;
   }

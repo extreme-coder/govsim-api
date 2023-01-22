@@ -27,7 +27,7 @@ module.exports = createCoreController('api::country.country', ({ strapi }) =>  (
     ctx.request.body.data = {
       ...ctx.request.body.data,
       join_code: code ,      
-      status: 'CAMPAIGN',
+      status: 'NEW',
       next_election: Date.now() + (ctx.request.body.data.campaign_period * 60000),
       next_campaign: Date.now() 
     };
@@ -44,5 +44,28 @@ module.exports = createCoreController('api::country.country', ({ strapi }) =>  (
     return response;
   },
 
+  async update(ctx) {    
+    //when status is changed to STARTED, update first party is_turn to true
+    if(ctx.request.body.data.status === 'CAMPAIGN') {
+      const parties = await strapi.entityService.findMany('api::party.party', {
+        filters: { country: ctx.params.id },
+        populate: '*'
+      })
+      if(parties.length > 0) {
+        await strapi.entityService.update('api::party.party', parties[0].id, {
+          data: {
+            is_turn: true
+          }
+        })
+      }
+      //send socket message to all users in the country      
+      strapi.io.to(parseInt(ctx.params.id)).emit('country_status_change', {status:'CAMPAIGN'})       
+    }
+    //update the country based on he request
+    const response = await super.update(ctx);
+    return response;
+  }
   
+
+
 }));

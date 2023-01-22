@@ -69,6 +69,10 @@
     "ready_for_parliament": {
       "type": "boolean",
       "default": false
+    },
+    "is_turn": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

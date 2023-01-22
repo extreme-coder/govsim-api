@@ -42,6 +42,8 @@ module.exports = createCoreController('api::promise.promise', ({ strapi }) =>  (
     const response = await super.create(ctx);      
 
     strapi.io.to(party.country.id).emit('new_bill', {id:response.id, name:response.name})
+
+    await strapi.service('api::party.party').updateTurn(party.country.id)
   
     return response;
   },
