@@ -27,9 +27,7 @@ module.exports = createCoreController('api::country.country', ({ strapi }) =>  (
     ctx.request.body.data = {
       ...ctx.request.body.data,
       join_code: code ,      
-      status: 'NEW',
-      next_election: Date.now() + (ctx.request.body.data.campaign_period * 60000),
-      next_campaign: Date.now() 
+      status: 'NEW'
     };
     
     const response = await super.create(ctx);    

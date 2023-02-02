@@ -49,8 +49,8 @@ module.exports = createCoreService('api::party.party', ({ strapi }) => ({
           const country = await strapi.entityService.findOne('api::country.country', countryId)
           const newRound = country.round + 1
           await strapi.entityService.update('api::country.country', countryId, { data: { round: newRound } })
-          //if round is 3, call election
-          if (newRound === 3) {
+          //if round is equal to campign_rounds, call election
+          if (newRound === country.campaign_rounds) {
             await strapi.entityService.create('api::election.election', {
               data: {
                 country: countryId,
@@ -62,6 +62,12 @@ module.exports = createCoreService('api::party.party', ({ strapi }) => ({
             //send socket message to country for election
             strapi.io.to(countryId).emit('election_underway', {})            
           }                    
+          if (newRound === country.campaign_rounds + country.parliament_rounds) {
+            //update country status to CAMPAIGN
+            await strapi.entityService.update('api::country.country', countryId, { data: { status: "CAMPAIGN" } })            
+            strapi.io.to(countryId).emit('country_status_change', {status:'CAMPAIGN'})  
+          }
+
         } else {          
           await strapi.entityService.update('api::party.party', parties[i+1].id, { data: { is_turn: true } })
           party = parties[i+1]

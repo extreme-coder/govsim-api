@@ -91,6 +91,12 @@
     "round": {
       "type": "integer",
       "default": 0
+    },
+    "campaign_rounds": {
+      "type": "integer"
+    },
+    "parliament_rounds": {
+      "type": "integer"
     }
   }
 }
