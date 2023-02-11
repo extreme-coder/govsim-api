@@ -102,10 +102,37 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         });
       }
       if (prevSeats > Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)) {
+        let headline = ""
+        switch(Math.floor(Math.random()*5)) {
+          case 0:
+            headline = `${p.name} Suffer Heavy Losses in Recent Election`
+          case 1:
+            headline = `${p.name} Lose Ground in Recent Election`,
+          case 2:
+            headline = `${p.name} Experience Electoral Setback`,
+          case 3:
+            headline = `${p.name} Experience Defeat at the Polls`,
+          default:
+            headline = `${p.name} Endure Electoral Defeat`
+        }
+        let lostSeats = prevSeats - Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)
+        let body = ""
+        switch(Math.floor(Math.random()*5)) {
+          case 0:
+            body = `Multiple MPs from the ${p.name} were seen leaving the parliament chambers today as results from the recent election rolled in. The ${p.name} lost ${lostSeats} seats. Will they ever recover from this defeat?`
+          case 1:
+            body = `As the latest election results were released, several representatives of the ${p.name} were observed exiting the legislature. The ${p.name} suffered a loss of ${lostSeats} seats. Is there any hope for a political comeback?`,
+          case 2:
+            body = `Upon the announcement of the recent election results, multiple politicians from the ${p.name} were seen leaving the chambers of the legislature. The recent elections resulted in a loss of ${lostSeats} seats for their party. Can the ${p.name} regain their footing following this major defeat?`,
+          case 3:
+            body = `As the most recent election results were made public, numerous members of the ${p.name} were seen leaving the parliamentary building. This resulted in a loss of ${lostSeats} seats. Will the ${p.name} be able to recover from this major setback?`,
+          default:
+            body = `Heavy traffic jams were observed around the Parliament Building today, as members of the ${p.name} exited following the announcement of the latest election results. ${lostSeats} ${p.name} seats were lost in the excitement of the recent election. Can the ${p.name} reverse their fortunes after this defeat?`
+        }
         await strapi.entityService.create('api::story.story', {
           data: {
-            headline: `${p.name} suffers heavy losses in recent election`,
-            body: `Multiple MPs from the ${p.name} were seen leaving the parliament chambers today as results from the recent election rolled in. The ${p.name} lost ${prevSeats - Math.floor((votes[p.id.toString(10)] * 400) / total !== 0)} seats. Will they ever recover from this defeat?`,
+            headline: headline,
+            body: body,
             country: countryID,
             party: p.id,
             publishedAt: new Date()
