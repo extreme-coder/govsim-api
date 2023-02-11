@@ -95,10 +95,23 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
             data: { status: 'PASSED' }
           })
         })
+        let body = ''
+        switch (Math.floor(Math.random() * 5)) {
+          case 0:
+            body = `After a long session of parliament, MPs managed to get ${bill.name}, the new bill in support of ${law.name} passed with a close majority.`
+          case 1:
+            body = `After a lengthy parliamentary session, MPs were able to pass the new ${bill.name} bill, which provides support for ${law.name}, by a slim margin.`
+          case 2:
+            body = `Following a lengthy parliamentary session, MPs were successful in getting the ${bill.name} bill, which provides backing for ${law.name}, passed with a narrow majority.`
+          case 3:
+            body = `Upon a lengthy session of parliament, MPs achieved getting the ${bill.name} bill, which supports ${law.name}, approved`
+          default:
+            body = `After a close vote, MPs have passed the new ${bill.name} bill in support of ${law.name}, marking a significant win for today's parliamentary session.`
+        }
         await strapi.entityService.create('api::story.story', {
           data: {
-            headline: `${bill.name} passed!`,
-            body: `After a long session of parliament, MPs managed to get ${bill.name}, the new bill in support of ${law.name} passed with a close majority.`,
+            headline: `${bill.name} Passed!`,
+            body: body,
             country: bill.country.id,
             party: bill.party.id,
             all_parties: true,
