@@ -4,7 +4,8 @@
   "info": {
     "singularName": "socrecard",
     "pluralName": "socrecards",
-    "displayName": "socrecard"
+    "displayName": "socrecard",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,6 +26,14 @@
     },
     "description": {
       "type": "string"
+    },
+    "score_type": {
+      "type": "enumeration",
+      "enum": [
+        "SEATS_WON",
+        "YOUR_BILL_PASSED",
+        "OTHER_BILL_PASSED"
+      ]
     }
   }
 }

@@ -9,7 +9,7 @@ const country = require('../../country/controllers/country');
 const { createCoreService } = require('@strapi/strapi').factories;
 
 module.exports = createCoreService('api::socrecard.socrecard', ({ strapi }) => ({
-  async addScore(partyId, score, desc) {
+  async addScore(partyId, score, desc, scoreType) {
     //get the party 
     const party = await strapi.entityService.findOne('api::party.party', partyId, {
       populate: { country: true }
@@ -20,6 +20,7 @@ module.exports = createCoreService('api::socrecard.socrecard', ({ strapi }) => (
       data: {
         party: partyId,
         score: score,
+        score_type: scoreType,
         description: desc,
         publishedAt: new Date(),
         country: party.country.id
