@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "socrecards",
+  "info": {
+    "singularName": "socrecard",
+    "pluralName": "socrecards",
+    "displayName": "socrecard"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "party": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::party.party"
+    },
+    "score": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

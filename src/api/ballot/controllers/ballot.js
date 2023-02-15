@@ -118,15 +118,15 @@ module.exports = createCoreController('api::ballot.ballot', ({ strapi }) => ({
             publishedAt: new Date()
           },
         });
-        await strapi.entityService.update('api::party.party', bill.party.id, {
-          data: { points: parseInt(bill.party.points) + 200 }
-        })
+
+
+        await strapi.service('api::scorecard.scorecard').addScore(bill.party.id, 200, 'Your Bill passed :' +  bill.name)
+
+
         const parties = await strapi.entityService.findMany('api::party.party')
         parties.forEach(async p => {
-          if (ballots.filter(b => b.party.id === p.id)[0].for) {
-            await strapi.entityService.update('api::party.party', p.id, {
-              data: { points: parseInt(bill.party.points) + 100 }
-            })
+          if (ballots.filter(b => b.party.id === p.id)[0].for) {            
+            await strapi.service('api::scorecard.scorecard').addScore(p.id, 100, 'You Voted for a Bill which passed :' +  bill.name)
           }
         })
 

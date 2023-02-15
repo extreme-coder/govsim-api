@@ -78,14 +78,16 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
       if (votes[p.id.toString(10)] > 0) {
         await strapi.service('api::party.party').joinParliament(p.id)
       }
-      var points = parseInt(p.points) + parseInt((votes[p.id.toString(10)] * 4000) / total)
+      let seats_won = Math.floor((votes[p.id.toString(10)] * 360) / total)
       await strapi.entityService.update('api::party.party', p.id, {
         data: {
-          seats: Math.floor((votes[p.id.toString(10)] * 360) / total),
-          points: points,
+          seats: seats_won,
           budget: budgets[p.id.toString(10)]
         },
       });
+      
+      await strapi.service('api::scorecard.scorecard').addScore(p.id, seats_won*10, 'Seats won :' +  seats_won)
+
       if (Math.floor((votes[p.id.toString(10)] * 360) / total) === 0) {
         leftOutParties.push(p.id)
         leftOutCount++
