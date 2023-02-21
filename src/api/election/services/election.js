@@ -86,7 +86,7 @@ module.exports = createCoreService('api::election.election', ({ strapi }) => ({
         },
       });
       
-      await strapi.service('api::scorecard.scorecard').addScore(p.id, seats_won*10, 'Seats won :' +  seats_won, 'SEATS_WON')
+      await strapi.service('api::socrecard.socrecard').addScore(p.id, seats_won*10, 'Seats won :' +  seats_won, 'SEATS_WON')
 
       if (Math.floor((votes[p.id.toString(10)] * 360) / total) === 0) {
         leftOutParties.push(p.id)

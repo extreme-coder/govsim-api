@@ -30,7 +30,7 @@ module.exports = createCoreService('api::socrecard.socrecard', ({ strapi }) => (
     //update the party score
     await strapi.entityService.update('api::party.party', partyId, {
       data: {
-        score: parseInt(party.score) + score,
+        points: parseInt(party.score) + score,
       },
     });
 
